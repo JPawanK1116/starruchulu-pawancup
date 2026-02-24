@@ -11,14 +11,14 @@ const categories = [
 
 const CategoryGrid = () => {
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="py-12 md:py-24 bg-white">
             <div className="container mx-auto px-4 md:px-8">
-                <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Shop by Category</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto font-body">Explore our wide range of authentic homemade delicacies categorized for your convenience.</p>
+                <div className="text-center mb-8 md:mb-12">
+                    <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Shop by Category</h2>
+                    <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-base">Explore our wide range of authentic homemade delicacies categorized for your convenience.</p>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+                <div className="grid grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-6">
                     {categories.map((category) => (
                         <Link
                             key={category.name}
@@ -32,9 +32,9 @@ const CategoryGrid = () => {
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-4">
-                                    <h3 className="text-white font-bold text-center text-sm md:text-lg mb-1">{category.name}</h3>
-                                    <span className="text-[var(--color-primary-gold)] text-xs text-center">{category.count} Items</span>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-2 md:p-4">
+                                    <h3 className="text-white font-bold text-center text-[10px] md:text-lg mb-0.5 md:mb-1 leading-tight">{category.name}</h3>
+                                    <span className="text-[var(--color-primary-gold)] text-[8px] md:text-xs text-center leading-tight">{category.count} Items</span>
                                 </div>
                             </div>
                         </Link>

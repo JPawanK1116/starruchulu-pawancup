@@ -21,7 +21,7 @@ const Home = () => {
     return (
         <div className="w-full relative">
             {/* Hero Section */}
-            <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
+            <section className="relative h-[60vh] md:h-[80vh] min-h-[450px] md:min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
                 <div className="absolute inset-0 z-0 opacity-60">
                     <img
                         src="/images/andhra-food-hero.jpg"
@@ -36,17 +36,17 @@ const Home = () => {
                     <span className="inline-block py-1 px-4 text-xs md:text-sm font-bold tracking-widest text-[var(--color-primary-gold)] border border-[var(--color-primary-gold)] rounded-full mb-6 uppercase bg-black/30 backdrop-blur-sm">
                         Premium Quality Homemade Foods
                     </span>
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-6 leading-tight drop-shadow-2xl max-w-5xl mx-auto">
+                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-2xl max-w-5xl mx-auto">
                         Authentic Andhra Flavours <br className="hidden md:block" />
                         <span className="text-[var(--color-primary-gold)]">Delivered Pan-India</span>
                     </h1>
-                    <p className="text-lg md:text-2xl text-gray-200 font-body mb-10 max-w-3xl mx-auto drop-shadow-md">
+                    <p className="text-base md:text-2xl text-gray-200 font-body mb-8 md:mb-10 max-w-3xl mx-auto drop-shadow-md px-2">
                         Handcrafted pickles, traditional sweets, and crunchy snacks made with love from the kitchens of Palnadu.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <Link
                             to="/shop"
-                            className="px-8 py-4 w-full sm:w-auto bg-[var(--color-primary-red)] hover:bg-red-700 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-[var(--color-primary-red)] hover:bg-red-700 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                         >
                             Shop Now
                         </Link>
@@ -54,7 +54,7 @@ const Home = () => {
                             href="https://wa.me/919876543210?text=I want to order from Star Ruchulu"
                             target="_blank"
                             rel="noreferrer"
-                            className="px-8 py-4 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
                         >
                             Order on WhatsApp
                         </a>
@@ -63,14 +63,14 @@ const Home = () => {
             </section>
 
             {/* Regional Specialties */}
-            <section className="py-20 bg-[var(--color-cream)]">
+            <section className="py-12 md:py-20 bg-[var(--color-cream)]">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Flavors by Region</h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-lg">Every district in Andhra Pradesh has a unique culinary story. Explore our distinct regional offerings.</p>
+                    <div className="text-center mb-8 md:mb-16">
+                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Flavors by Region</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">Every district in Andhra Pradesh has a unique culinary story. Explore our distinct regional offerings.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
                         {regionals.map((region) => (
                             <Link to="/shop" key={region.name} className="group overflow-hidden rounded-2xl relative aspect-[4/5] md:aspect-[3/4] shadow-md hover:shadow-2xl transition-all duration-500">
                                 <img
@@ -96,12 +96,12 @@ const Home = () => {
             <CategoryGrid />
 
             {/* Best Sellers */}
-            <section className="py-24 bg-[var(--color-cream)] relative">
+            <section className="py-12 md:py-24 bg-[var(--color-cream)] relative">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="flex flex-col md:flex-row justify-between items-end mb-16">
-                        <div>
-                            <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Our Best Sellers</h2>
-                            <p className="text-gray-600 font-body text-lg max-w-xl">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16">
+                        <div className="text-center md:text-left w-full">
+                            <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Our Best Sellers</h2>
+                            <p className="text-gray-600 font-body text-sm md:text-lg max-w-xl mx-auto md:mx-0">
                                 The most loved recipes that keep our customers coming back for more. Must-try for first timers!
                             </p>
                         </div>
@@ -110,7 +110,7 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
                         {bestSellers.map(product => (
                             <ProductCard key={product.id} product={product} />
                         ))}
@@ -124,14 +124,14 @@ const Home = () => {
             </section>
 
             {/* Timeline Section */}
-            <section className="py-24 bg-white border-y border-gray-100">
+            <section className="py-12 md:py-24 bg-white border-y border-gray-100">
                 <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">From Our Kitchen To You</h2>
-                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-lg">Our commitment to quality, tradition, and taste in every step.</p>
+                    <div className="text-center mb-10 md:mb-16">
+                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">From Our Kitchen To You</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">Our commitment to quality, tradition, and taste in every step.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 relative">
                         <div className="hidden md:block absolute top-10 left-[12%] right-[12%] h-1 bg-yellow-100 -z-10"></div>
 
                         <div className="text-center flex flex-col items-center">

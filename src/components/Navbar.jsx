@@ -36,13 +36,13 @@ const Navbar = () => {
     return (
         <>
             <header
-                className={`fixed w-full z-40 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-[var(--color-cream)] py-4'
+                className={`fixed w-full z-40 transition-all duration-300 border-b border-gray-100 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-[var(--color-cream)] py-3 md:py-4'
                     }`}
             >
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="flex justify-between items-center">
                         {/* Logo */}
-                        <Link to="/" className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-primary-red)]">
+                        <Link to="/" className="text-xl md:text-3xl font-heading font-bold text-[var(--color-primary-red)] border border-transparent shadow-none hover:shadow-none">
                             Star Ruchulu
                         </Link>
 
@@ -83,10 +83,10 @@ const Navbar = () => {
                             </button>
 
                             <button
-                                className="md:hidden p-2 text-gray-700"
+                                className="md:hidden p-1 text-gray-700 hover:text-[var(--color-primary-red)]"
                                 onClick={() => setMobileMenuOpen(true)}
                             >
-                                <Menu size={28} />
+                                <Menu size={24} />
                             </button>
                         </div>
                     </div>
