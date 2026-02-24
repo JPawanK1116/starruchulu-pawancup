@@ -1,0 +1,286 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ShoppingCart, Heart, Share2, Info, LayoutList, Package, Star } from 'lucide-react';
+import productsData from '../data/products.json';
+import { addToCart } from '../utils/cartUtils';
+import ProductCard from '../components/ProductCard';
+
+const ProductDetails = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+    const [product, setProduct] = useState(null);
+    const [selectedWeight, setSelectedWeight] = useState('250g');
+    const [quantity, setQuantity] = useState(1);
+    const [activeTab, setActiveTab] = useState('description');
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        const foundProduct = productsData.find(p => p.id === id);
+        if (foundProduct) {
+            setProduct(foundProduct);
+            setSelectedWeight('250g');
+            setQuantity(1);
+        } else {
+            navigate('/shop');
+        }
+    }, [id, navigate]);
+
+    if (!product) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+
+    const price = product.pricePerWeight[selectedWeight];
+    const relatedProducts = productsData.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+
+    const handleAddToCart = () => {
+        addToCart(product, quantity, selectedWeight);
+        window.dispatchEvent(new Event('cartUpdated'));
+        // Optional toast
+        alert(`Added ${quantity}x ${product.name} to cart!`);
+    };
+
+    const handleBuyNow = () => {
+        addToCart(product, quantity, selectedWeight);
+        navigate('/checkout');
+    };
+
+    return (
+        <div className="bg-[var(--color-cream)] pt-24 pb-16 min-h-screen">
+            <div className="container mx-auto px-4 md:px-8">
+
+                {/* Breadcrumbs */}
+                <nav className="text-sm font-medium text-gray-500 mb-8 flex gap-2">
+                    <a href="/" className="hover:text-[var(--color-primary-red)] transition-colors">Home</a>
+                    <span>/</span>
+                    <a href="/shop" className="hover:text-[var(--color-primary-red)] transition-colors">Shop</a>
+                    <span>/</span>
+                    <a href={`/shop/${product.category}`} className="hover:text-[var(--color-primary-red)] transition-colors">{product.category}</a>
+                    <span>/</span>
+                    <span className="text-gray-900 font-bold">{product.name}</span>
+                </nav>
+
+                {/* Product Section */}
+                <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-3xl p-6 md:p-12 shadow-md border border-[var(--color-primary-gold)]/20 mb-16 relative">
+
+                    {/* Decorative element */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary-gold)]/10 rounded-bl-full pointer-events-none"></div>
+
+                    {/* Images */}
+                    <div className="lg:w-1/2 flex flex-col gap-4">
+                        <div className="aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-inner group relative cursor-zoom-in">
+                            <img
+                                src={product.image}
+                                alt={product.name}
+                                className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-125 md:group-hover:origin-center"
+                            />
+                            {product.isBestSeller && (
+                                <div className="absolute top-4 left-4 bg-red-600 text-white text-sm font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-wide">
+                                    🔥 Best Seller
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Thumbnails (Static 3 identical for demo) */}
+                        <div className="flex gap-4">
+                            {[1, 2, 3].map(thumb => (
+                                <button key={thumb} className="w-24 aspect-square rounded-xl overflow-hidden border-2 border-transparent hover:border-[var(--color-primary-red)] transition-all">
+                                    <img src={product.image} alt="Thumbnail relative" className="w-full h-full object-cover opacity-75 hover:opacity-100" />
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Details */}
+                    <div className="lg:w-1/2 flex flex-col">
+                        <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[var(--color-primary-red)] mb-4">{product.name}</h1>
+
+                        <div className="flex items-center gap-4 mb-6">
+                            <div className="flex text-[var(--color-primary-gold)]">
+                                {[1, 2, 3, 4, 5].map(star => (
+                                    <Star key={star} size={20} fill="currentColor" />
+                                ))}
+                            </div>
+                            <span className="text-gray-500 font-medium">(24 reviews)</span>
+                            <span className="text-gray-300">|</span>
+                            <span className="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">In Stock</span>
+                        </div>
+
+                        <p className="text-gray-600 font-body text-lg mb-8 leading-relaxed">
+                            Experience the authentic taste of {product.region}. Handcrafted by expert homemakers using the finest ingredients and traditional recipes passed down through generations.
+                        </p>
+
+                        {/* Price */}
+                        <div className="mb-8 p-4 bg-red-50/50 rounded-xl border border-red-100">
+                            <span className="text-4xl font-bold text-[var(--color-dark-text)] flex items-end gap-2">
+                                ₹{price} <span className="text-lg text-gray-500 font-normal line-through mb-1">₹{Math.floor(price * 1.2)}</span>
+                            </span>
+                            <p className="text-sm text-[var(--color-primary-green)] font-medium mt-1">Inclusive of all local taxes</p>
+                        </div>
+
+                        {/* Options */}
+                        <div className="space-y-6 flex-grow">
+
+                            <div>
+                                <h3 className="font-bold text-gray-800 mb-3 flex justify-between items-center">
+                                    Select Weight <span className="text-sm font-normal text-gray-500 underline cursor-pointer hover:text-[var(--color-primary-red)]">View Box Sizes</span>
+                                </h3>
+                                <div className="flex flex-wrap gap-3">
+                                    {Object.keys(product.pricePerWeight).map(weight => (
+                                        <button
+                                            key={weight}
+                                            onClick={() => setSelectedWeight(weight)}
+                                            className={`py-3 px-6 rounded-xl font-bold border-2 transition-all ${selectedWeight === weight
+                                                    ? 'border-[var(--color-primary-red)] bg-red-50 text-[var(--color-primary-red)] shadow-sm scale-[1.02]'
+                                                    : 'border-gray-200 text-gray-600 hover:border-red-200 hover:bg-red-50/50'
+                                                }`}
+                                        >
+                                            {weight}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 className="font-bold text-gray-800 mb-3">Quantity</h3>
+                                <div className="flex items-center w-32 border-2 border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
+                                    <button
+                                        onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-xl font-medium"
+                                    >
+                                        -
+                                    </button>
+                                    <input
+                                        type="number"
+                                        value={quantity}
+                                        readOnly
+                                        className="w-full text-center font-bold text-lg border-x-2 border-gray-200/50 focus:outline-none"
+                                    />
+                                    <button
+                                        onClick={() => setQuantity(q => q + 1)}
+                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-xl font-medium"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        {/* Actions */}
+                        <div className="flex flex-col sm:flex-row gap-4 mt-10 pb-8 border-b border-gray-100">
+                            <button
+                                onClick={handleAddToCart}
+                                className="flex-1 py-4 px-6 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
+                            >
+                                <ShoppingCart size={20} /> Add to Cart
+                            </button>
+                            <button
+                                onClick={handleBuyNow}
+                                className="flex-1 py-4 px-6 bg-[var(--color-primary-gold)] hover:bg-yellow-400 text-gray-900 rounded-xl font-bold flex justify-center items-center transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                            >
+                                Buy Now
+                            </button>
+                            <button className="w-14 h-[60px] flex items-center justify-center border-2 border-gray-200 rounded-xl text-gray-500 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors shadow-sm cursor-pointer shrink-0">
+                                <Heart size={24} />
+                            </button>
+                        </div>
+
+                        {/* Meta Info */}
+                        <div className="mt-8 flex gap-6 text-sm font-medium text-gray-500">
+                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-red)] transition-colors"><Share2 size={18} /> Share</button>
+                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-red)] transition-colors"><Info size={18} /> Ask Question</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                {/* Tabs Section */}
+                <div className="mb-16 bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div className="flex flex-wrap border-b border-gray-100 bg-gray-50">
+                        <button
+                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'description' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            onClick={() => setActiveTab('description')}
+                        >
+                            <LayoutList size={18} /> Product Details
+                        </button>
+                        <button
+                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'ingredients' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            onClick={() => setActiveTab('ingredients')}
+                        >
+                            <Package size={18} /> Ingredients
+                        </button>
+                        <button
+                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'reviews' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            onClick={() => setActiveTab('reviews')}
+                        >
+                            <Star size={18} /> Reviews (24)
+                        </button>
+                    </div>
+
+                    <div className="p-8 md:p-12">
+                        {activeTab === 'description' && (
+                            <div className="prose max-w-none text-gray-600 leading-relaxed font-body text-lg">
+                                <p className="mb-4">Experience the bold, fiery, and deeply comforting flavors of our {product.name}. Carefully prepared using a traditional recipe straight from the heart of {product.region}.</p>
+                                <div className="grid md:grid-cols-2 gap-8 mt-8">
+                                    <div className="bg-red-50/50 p-6 rounded-xl border border-red-100">
+                                        <h4 className="font-bold text-[var(--color-primary-red)] flex items-center gap-2 mb-2"><Info size={16} /> Shelf Life</h4>
+                                        <p>{product.shelfLife}</p>
+                                    </div>
+                                    <div className="bg-green-50/50 p-6 rounded-xl border border-green-100">
+                                        <h4 className="font-bold text-[var(--color-primary-green)] flex items-center gap-2 mb-2"><Package size={16} /> Storage Instructions</h4>
+                                        <p>{product.storage}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {activeTab === 'ingredients' && (
+                            <ul className="grid grid-cols-2 gap-y-4 gap-x-8 max-w-2xl text-lg font-medium text-gray-700">
+                                {product.ingredients.map((ing, i) => (
+                                    <li key={i} className="flex items-center gap-3">
+                                        <div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>
+                                        {ing}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+
+                        {activeTab === 'reviews' && (
+                            <div className="space-y-8">
+                                {[1, 2].map(r => (
+                                    <div key={r} className="border-b border-gray-100 pb-8 last:border-0 last:pb-0">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="flex text-[var(--color-primary-gold)]">
+                                                {[1, 2, 3, 4, 5].map(star => <Star key={star} size={14} fill="currentColor" />)}
+                                            </div>
+                                            <span className="font-bold text-[var(--color-dark-text)]">Awesome Taste!</span>
+                                        </div>
+                                        <p className="text-gray-600 mb-3 text-lg leading-relaxed">"This tastes exactly like the ones my grandmother used to make. The spice levels are perfect and you can taste the high quality oil and ingredients used. A masterclass in pickling."</p>
+                                        <span className="text-sm text-gray-400 font-medium">Verified Buyer - 2 days ago</span>
+                                    </div>
+                                ))}
+                                <button className="px-6 py-2 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-lg font-bold hover:bg-red-50 transition-colors">Write a Review</button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+
+                {/* Target Recommendations */}
+                {relatedProducts.length > 0 && (
+                    <div>
+                        <div className="flex justify-between items-end mb-8">
+                            <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-red)]">Pairs Well With</h2>
+                            <a href="/shop" className="text-[var(--color-primary-red)] font-bold hover:underline hidden md:block">View All</a>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {relatedProducts.map(rp => (
+                                <ProductCard key={rp.id} product={rp} />
+                            ))}
+                        </div>
+                    </div>
+                )}
+
+            </div>
+        </div>
+    );
+};
+
+export default ProductDetails;

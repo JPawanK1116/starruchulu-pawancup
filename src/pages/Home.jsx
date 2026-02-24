@@ -1,0 +1,193 @@
+import { Link } from 'react-router-dom';
+import CategoryGrid from '../components/CategoryGrid';
+import ComboSection from '../components/ComboSection';
+import TestimonialSection from '../components/TestimonialSection';
+import InstagramGallery from '../components/InstagramGallery';
+import SubscriptionForm from '../components/SubscriptionForm';
+import ProductCard from '../components/ProductCard';
+import productsData from '../data/products.json';
+import { Leaf, Award, Recycle, Truck } from 'lucide-react';
+
+const Home = () => {
+    const bestSellers = productsData.filter(p => p.isBestSeller).slice(0, 4);
+
+    const regionals = [
+        { name: 'Palnadu', image: '/images/palnadu-special.jpg', color: 'bg-red-900' },
+        { name: 'Godavari', image: '/images/godavari-special.jpg', color: 'bg-green-800' },
+        { name: 'Rayalaseema', image: '/images/rayalaseema-special.jpg', color: 'bg-yellow-600' },
+        { name: 'Coastal Andhra', image: '/images/coastal-andhra.jpg', color: 'bg-blue-900' },
+    ];
+
+    return (
+        <div className="w-full relative">
+            {/* Hero Section */}
+            <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
+                <div className="absolute inset-0 z-0 opacity-60">
+                    <img
+                        src="/images/andhra-food-hero.jpg"
+                        alt="Authentic Andhra Food"
+                        className="w-full h-full object-cover"
+                        loading="eager"
+                    />
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 z-10" />
+
+                <div className="container relative z-20 px-4 md:px-8 text-center mt-12">
+                    <span className="inline-block py-1 px-4 text-xs md:text-sm font-bold tracking-widest text-[var(--color-primary-gold)] border border-[var(--color-primary-gold)] rounded-full mb-6 uppercase bg-black/30 backdrop-blur-sm">
+                        Premium Quality Homemade Foods
+                    </span>
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-6 leading-tight drop-shadow-2xl max-w-5xl mx-auto">
+                        Authentic Andhra Flavours <br className="hidden md:block" />
+                        <span className="text-[var(--color-primary-gold)]">Delivered Pan-India</span>
+                    </h1>
+                    <p className="text-lg md:text-2xl text-gray-200 font-body mb-10 max-w-3xl mx-auto drop-shadow-md">
+                        Handcrafted pickles, traditional sweets, and crunchy snacks made with love from the kitchens of Palnadu.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                        <Link
+                            to="/shop"
+                            className="px-8 py-4 w-full sm:w-auto bg-[var(--color-primary-red)] hover:bg-red-700 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                        >
+                            Shop Now
+                        </Link>
+                        <a
+                            href="https://wa.me/919876543210?text=I want to order from Star Ruchulu"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="px-8 py-4 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                        >
+                            Order on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Regional Specialties */}
+            <section className="py-20 bg-[var(--color-cream)]">
+                <div className="container mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Flavors by Region</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-lg">Every district in Andhra Pradesh has a unique culinary story. Explore our distinct regional offerings.</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+                        {regionals.map((region) => (
+                            <Link to="/shop" key={region.name} className="group overflow-hidden rounded-2xl relative aspect-[4/5] md:aspect-[3/4] shadow-md hover:shadow-2xl transition-all duration-500">
+                                <img
+                                    src={region.image}
+                                    alt={region.name}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    loading="lazy"
+                                />
+                                <div className={`absolute inset-0 ${region.color} opacity-40 mix-blend-multiply transition-opacity group-hover:opacity-60`}></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
+                                    <h3 className="text-2xl md:text-3xl font-heading font-bold text-white mb-2">{region.name}</h3>
+                                    <span className="text-[var(--color-primary-gold)] font-bold opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center gap-2">
+                                        Explore <span className="text-xl">→</span>
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Category Grid */}
+            <CategoryGrid />
+
+            {/* Best Sellers */}
+            <section className="py-24 bg-[var(--color-cream)] relative">
+                <div className="container mx-auto px-4 md:px-8">
+                    <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+                        <div>
+                            <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Our Best Sellers</h2>
+                            <p className="text-gray-600 font-body text-lg max-w-xl">
+                                The most loved recipes that keep our customers coming back for more. Must-try for first timers!
+                            </p>
+                        </div>
+                        <Link to="/shop" className="hidden md:inline-flex mt-6 md:mt-0 px-6 py-3 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-full font-bold hover:bg-[var(--color-primary-red)] hover:text-white transition-colors">
+                            View Entire Menu
+                        </Link>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                        {bestSellers.map(product => (
+                            <ProductCard key={product.id} product={product} />
+                        ))}
+                    </div>
+                    <div className="mt-10 text-center md:hidden">
+                        <Link to="/shop" className="inline-block px-8 py-4 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-full font-bold hover:bg-[var(--color-primary-red)] hover:text-white transition-colors">
+                            View Entire Menu
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
+            {/* Timeline Section */}
+            <section className="py-24 bg-white border-y border-gray-100">
+                <div className="container mx-auto px-4 md:px-8">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">From Our Kitchen To You</h2>
+                        <p className="text-gray-600 max-w-2xl mx-auto font-body text-lg">Our commitment to quality, tradition, and taste in every step.</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 relative">
+                        <div className="hidden md:block absolute top-10 left-[12%] right-[12%] h-1 bg-yellow-100 -z-10"></div>
+
+                        <div className="text-center flex flex-col items-center">
+                            <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-[var(--color-primary-green)] mb-6 shadow-sm border border-green-100">
+                                <Leaf size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold font-heading mb-3">Handpicked Ingredients</h3>
+                            <p className="text-gray-500 text-sm">Finest quality spices and farm-fresh produce.</p>
+                        </div>
+
+                        <div className="text-center flex flex-col items-center">
+                            <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-[var(--color-primary-red)] mb-6 shadow-sm border border-red-100">
+                                <Award size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold font-heading mb-3">Traditional Preparation</h3>
+                            <p className="text-gray-500 text-sm">Authentic recipes passed down through generations.</p>
+                        </div>
+
+                        <div className="text-center flex flex-col items-center">
+                            <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center text-blue-600 mb-6 shadow-sm border border-blue-100">
+                                <Recycle size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold font-heading mb-3">Hygienic Packaging</h3>
+                            <p className="text-gray-500 text-sm">Sealed with zero preservatives to lock in freshness.</p>
+                        </div>
+
+                        <div className="text-center flex flex-col items-center">
+                            <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center text-yellow-600 mb-6 shadow-sm border border-yellow-100">
+                                <Truck size={32} />
+                            </div>
+                            <h3 className="text-xl font-bold font-heading mb-3">Delivered Fresh</h3>
+                            <p className="text-gray-500 text-sm">Fast and secure Pan-India delivery to your doorstep.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Trust Badges Strip */}
+            <div className="bg-gray-50 border-y border-gray-200 py-6 overflow-x-auto hide-scroll-bar whitespace-nowrap">
+                <div className="flex items-center justify-center gap-8 md:gap-16 px-4 font-bold text-gray-700 uppercase tracking-widest text-xs md:text-sm">
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>FSSAI Certified</span>
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>100% Homemade</span>
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>No Preservatives</span>
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>Secure Payments</span>
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>Pan-India Shipping</span>
+                    <span className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-[var(--color-primary-gold)]"></div>Cash on Delivery</span>
+                </div>
+            </div>
+
+            <ComboSection />
+            <TestimonialSection />
+            <InstagramGallery />
+            <SubscriptionForm />
+
+        </div>
+    );
+};
+
+export default Home;

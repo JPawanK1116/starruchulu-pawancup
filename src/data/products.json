@@ -1,0 +1,170 @@
+[
+    {
+        "id": "1",
+        "name": "Authentic Gongura Pickle",
+        "category": "Veg Pickles",
+        "spiceLevel": 3,
+        "price": 250,
+        "pricePerWeight": {
+            "250g": 250,
+            "500g": 480,
+            "1kg": 900
+        },
+        "image": "/images/gongura-pickle.jpg",
+        "isBestSeller": true,
+        "ingredients": [
+            "Gongura Leaves",
+            "Chili Powder",
+            "Garlic",
+            "Oil",
+            "Spices"
+        ],
+        "shelfLife": "6 Months",
+        "storage": "Store in a cool dry place. Use dry spoon.",
+        "region": "Palnadu Specials"
+    },
+    {
+        "id": "2",
+        "name": "Classic Mango Avakaya",
+        "category": "Veg Pickles",
+        "spiceLevel": 4,
+        "price": 280,
+        "pricePerWeight": {
+            "250g": 280,
+            "500g": 540,
+            "1kg": 1000
+        },
+        "image": "/images/avakaya.jpg",
+        "isBestSeller": true,
+        "ingredients": [
+            "Raw Mango",
+            "Mustard Powder",
+            "Chili Powder",
+            "Sesame Oil"
+        ],
+        "shelfLife": "12 Months",
+        "storage": "Keep away from moisture.",
+        "region": "Godavari Specials"
+    },
+    {
+        "id": "3",
+        "name": "Spicy Chicken Pickle",
+        "category": "Non-Veg Pickles",
+        "spiceLevel": 5,
+        "price": 450,
+        "pricePerWeight": {
+            "250g": 450,
+            "500g": 850,
+            "1kg": 1600
+        },
+        "image": "/images/chicken-pickle.jpg",
+        "isBestSeller": true,
+        "ingredients": [
+            "Boneless Chicken",
+            "Garam Masala",
+            "Ginger Garlic Paste",
+            "Oil",
+            "Lemon"
+        ],
+        "shelfLife": "3 Months",
+        "storage": "Refrigerate after opening.",
+        "region": "Rayalaseema Specials"
+    },
+    {
+        "id": "4",
+        "name": "Nellore Pothireddy Mutton Pickle",
+        "category": "Non-Veg Pickles",
+        "spiceLevel": 4,
+        "price": 550,
+        "pricePerWeight": {
+            "250g": 550,
+            "500g": 1050,
+            "1kg": 2000
+        },
+        "image": "/images/mutton-pickle.jpg",
+        "isBestSeller": false,
+        "ingredients": [
+            "Boneless Mutton",
+            "Special Masala",
+            "Ginger Garlic Paste",
+            "Oil",
+            "Lemon"
+        ],
+        "shelfLife": "3 Months",
+        "storage": "Refrigerate after opening.",
+        "region": "Coastal Andhra Specials"
+    },
+    {
+        "id": "5",
+        "name": "Traditional Bobbatlu",
+        "category": "Sweets",
+        "spiceLevel": 0,
+        "price": 200,
+        "pricePerWeight": {
+            "250g": 200,
+            "500g": 380,
+            "1kg": 750
+        },
+        "image": "/images/bobbatlu.jpg",
+        "isBestSeller": true,
+        "ingredients": [
+            "Maida",
+            "Jaggery",
+            "Chana Dal",
+            "Ghee",
+            "Cardamom"
+        ],
+        "shelfLife": "10 Days",
+        "storage": "Keep in an airtight container.",
+        "region": "Godavari Specials"
+    },
+    {
+        "id": "6",
+        "name": "Andhra Boondi Laddu",
+        "category": "Sweets",
+        "spiceLevel": 0,
+        "price": 220,
+        "pricePerWeight": {
+            "250g": 220,
+            "500g": 420,
+            "1kg": 800
+        },
+        "image": "/images/boondi-laddu.jpg",
+        "isBestSeller": false,
+        "ingredients": [
+            "Besan",
+            "Sugar",
+            "Ghee",
+            "Cashews",
+            "Cardamom"
+        ],
+        "shelfLife": "15 Days",
+        "storage": "Keep in an airtight container.",
+        "region": "Rayalaseema Specials"
+    },
+    {
+        "id": "7",
+        "name": "Crispy Murukulu",
+        "category": "Snacks",
+        "spiceLevel": 2,
+        "price": 180,
+        "pricePerWeight": {
+            "250g": 180,
+            "500g": 340,
+            "1kg": 650
+        },
+        "image": "/images/murukulu.jpg",
+        "isBestSeller": true,
+        "ingredients": [
+            "Rice Flour",
+            "Urad Dal",
+            "Sesame Seeds",
+            "Ajwain",
+            "Salt",
+            "Oil"
+        ],
+        "shelfLife": "45 Days",
+        "storage": "Store in an airtight container.",
+        "region": "Palnadu Specials"
+    }
+]
