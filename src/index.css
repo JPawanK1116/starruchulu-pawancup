@@ -1,23 +1,24 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-red: #1a1a1a;
-  /* Charcoal black (Replaces old dark green primary) */
-  --color-primary-gold: #C5A059;
-  /* Premium muted gold */
-  --color-primary-green: #2B4C32;
-  /* Secondary elegant deep green */
-  --color-cream: #FAFAFA;
-  /* Pure Off-White for clean premium look */
-  --color-dark-text: #212529;
-  /* Neutral charcoal text */
-  --font-heading: 'Cormorant Garamond', serif;
+  --color-primary-green: #1F3D2B;
+  --color-secondary-green: #4C7A5A;
+  --color-primary-gold: #C6A75E;
+  --color-bg-white: #FFFFFF;
+  --color-bg-alt: #F8FAF7;
+  --color-card-bg: #F3F6F2;
+  --color-text-primary: #1E1E1E;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #7A7A7A;
+  --color-footer-bg: #1F3D2B;
+  --color-crawlup-bar: #153020;
+  --font-heading: 'Playfair Display', 'Cormorant Garamond', serif;
   --font-body: 'Outfit', sans-serif;
 }
 
 @layer base {
   body {
-    @apply bg-[var(--color-cream)] text-[var(--color-dark-text)] font-body;
+    @apply bg-[var(--color-bg-white)] text-[var(--color-text-primary)] font-body;
   }
 
   h1,
@@ -26,6 +27,6 @@
   h4,
   h5,
   h6 {
-    @apply font-heading text-[var(--color-primary-red)];
+    @apply font-heading text-[var(--color-primary-green)];
   }
 }

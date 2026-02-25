@@ -12,8 +12,8 @@ const InstagramGallery = () => {
         <section className="py-16 bg-white overflow-hidden">
             <div className="container mx-auto px-4 md:px-8 mb-8 flex items-center justify-between">
                 <div>
-                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-primary-red)] flex items-center gap-3">
-                        <Instagram className="text-[var(--color-primary-red)]" /> Follow Us @StarRuchulu
+                    <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-primary-green)] flex items-center gap-3">
+                        <Instagram className="text-[var(--color-primary-green)]" /> Follow Us @StarRuchulu
                     </h2>
                     <p className="text-gray-500 font-body mt-2">Tag your meals to get featured!</p>
                 </div>

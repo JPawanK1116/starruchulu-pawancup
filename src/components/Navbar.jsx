@@ -47,13 +47,13 @@ const Navbar = () => {
     return (
         <>
             <header
-                className={`fixed w-full z-40 transition-all duration-300 border-b border-gray-100 ${isScrolled ? 'bg-white shadow-md py-2' : 'bg-[var(--color-cream)] py-3 md:py-4'
+                className={`fixed w-full z-40 transition-all duration-300 border-b border-gray-100 ${isScrolled ? 'backdrop-blur-md bg-white/90 shadow-sm py-2' : 'bg-[var(--color-card-bg)] py-3 md:py-4'
                     }`}
             >
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="flex justify-between items-center">
                         {/* Logo */}
-                        <Link to="/" className="text-xl md:text-3xl font-heading font-bold text-[var(--color-primary-red)] border border-transparent shadow-none hover:shadow-none">
+                        <Link to="/" className="text-xl md:text-3xl font-heading font-bold text-[var(--color-primary-green)] border border-transparent shadow-none hover:shadow-none">
                             Star Ruchulu
                         </Link>
 
@@ -63,7 +63,7 @@ const Navbar = () => {
                                 <Link
                                     key={link.name}
                                     to={link.path}
-                                    className="font-medium text-[var(--color-dark-text)] hover:text-[var(--color-primary-green)] transition-colors relative group"
+                                    className="font-medium text-[var(--color-text-primary)] hover:text-[var(--color-primary-green)] transition-colors relative group"
                                 >
                                     {link.name}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[var(--color-primary-gold)] transition-all group-hover:w-full"></span>
@@ -95,12 +95,12 @@ const Navbar = () => {
                             </form>
 
                             <button
-                                className="p-2 text-gray-700 hover:text-[var(--color-primary-red)] transition-colors relative"
+                                className="p-2 text-[var(--color-primary-green)] hover:text-[var(--color-primary-gold)] transition-colors relative"
                                 onClick={() => setCartOpen(true)}
                             >
                                 <ShoppingCart size={24} />
                                 {cartCount > 0 && (
-                                    <span className="absolute top-0 right-0 bg-[var(--color-primary-red)] text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center animate-pulse">
+                                    <span className="absolute top-0 right-0 bg-[var(--color-primary-gold)] text-white text-[10px] font-bold h-5 w-5 rounded-full flex items-center justify-center animate-pulse">
                                         {cartCount}
                                     </span>
                                 )}
@@ -116,7 +116,7 @@ const Navbar = () => {
                             </button>
 
                             <button
-                                className="md:hidden p-1 text-gray-700 hover:text-[var(--color-primary-red)]"
+                                className="md:hidden p-1 text-[var(--color-primary-green)] hover:text-[var(--color-primary-gold)]"
                                 onClick={() => setMobileMenuOpen(true)}
                             >
                                 <Menu size={24} />
@@ -139,7 +139,7 @@ const Navbar = () => {
                     }`}
             >
                 <div className="p-5 flex justify-between items-center border-b">
-                    <span className="text-xl font-heading font-bold text-[var(--color-primary-red)]">Menu</span>
+                    <span className="text-xl font-heading font-bold text-[var(--color-primary-green)]">Menu</span>
                     <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-gray-500 hover:text-black hover:bg-gray-100 rounded-full">
                         <X size={24} />
                     </button>
@@ -149,14 +149,14 @@ const Navbar = () => {
                         <Link
                             key={link.name}
                             to={link.path}
-                            className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-red)] py-2 border-b border-gray-100"
+                            className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             {link.name}
                         </Link>
                     ))}
-                    <Link to="/about" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-red)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-                    <Link to="/contact" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-red)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                    <Link to="/about" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+                    <Link to="/contact" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
                 </div>
             </div>
 

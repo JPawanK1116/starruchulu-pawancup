@@ -23,9 +23,9 @@ const Contact = () => {
     };
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-4 pb-24">
+        <div className="bg-[var(--color-bg-white)] min-h-screen pt-4 pb-24">
             {/* Banner */}
-            <div className="bg-[var(--color-primary-red)] text-white py-12 md:py-16 text-center shadow-inner relative overflow-hidden">
+            <div className="bg-[var(--color-primary-green)] text-white py-12 md:py-16 text-center shadow-inner relative overflow-hidden">
                 <h1 className="text-3xl md:text-5xl font-heading font-bold mb-3 md:mb-4 drop-shadow-md z-10 relative">
                     Contact Us
                 </h1>
@@ -41,11 +41,11 @@ const Contact = () => {
 
                     {/* Contact Information */}
                     <div className="lg:w-1/3">
-                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-dark-text)] mb-6 md:mb-8 pb-3 md:pb-4 border-b border-[var(--color-primary-gold)]/30">Get in Touch</h2>
+                        <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-text-primary)] mb-6 md:mb-8 pb-3 md:pb-4 border-b border-[var(--color-primary-gold)]/30">Get in Touch</h2>
 
                         <div className="space-y-4 md:space-y-8">
                             <div className="flex items-start gap-4 p-5 md:p-6 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-50 text-[var(--color-primary-red)] rounded-full flex items-center justify-center flex-shrink-0">
+                                <div className="w-10 h-10 md:w-12 md:h-12 bg-red-50 text-[var(--color-primary-green)] rounded-full flex items-center justify-center flex-shrink-0">
                                     <Phone size={20} />
                                 </div>
                                 <div>
@@ -101,18 +101,18 @@ const Contact = () => {
                                     <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-6 shadow-md border border-green-200">
                                         <MessageSquare size={32} />
                                     </div>
-                                    <h3 className="text-3xl font-heading font-bold text-[var(--color-dark-text)] mb-3 text-center">Message Received!</h3>
+                                    <h3 className="text-3xl font-heading font-bold text-[var(--color-text-primary)] mb-3 text-center">Message Received!</h3>
                                     <p className="text-gray-600 font-body text-center max-w-sm">Thank you for getting in touch. One of our team members will respond to your query shortly.</p>
                                     <button
                                         onClick={() => setIsSent(false)}
-                                        className="mt-8 px-8 py-3 bg-[var(--color-primary-red)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-md"
+                                        className="mt-8 px-8 py-3 bg-[var(--color-primary-green)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-md"
                                     >
                                         Send Another Message
                                     </button>
                                 </div>
                             )}
 
-                            <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-primary-red)] mb-6 md:mb-8 flex items-center gap-3">
+                            <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-primary-green)] mb-6 md:mb-8 flex items-center gap-3">
                                 Send us a Message
                             </h2>
 
@@ -125,7 +125,7 @@ const Contact = () => {
                                             required
                                             value={formData.name}
                                             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
                                             placeholder="John Doe"
                                         />
                                     </div>
@@ -136,7 +136,7 @@ const Contact = () => {
                                             required
                                             value={formData.phone}
                                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
                                             placeholder="+91 98765 43210"
                                         />
                                     </div>
@@ -148,7 +148,7 @@ const Contact = () => {
                                         type="email"
                                         value={formData.email}
                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
+                                        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg"
                                         placeholder="john@example.com (Optional)"
                                     />
                                 </div>
@@ -160,7 +160,7 @@ const Contact = () => {
                                         rows="5"
                                         value={formData.message}
                                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg resize-none"
+                                        className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-xl py-3 px-4 md:py-4 md:px-5 focus:outline-none focus:bg-white focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-all font-body text-base md:text-lg resize-none"
                                         placeholder="How can we help you?"
                                     ></textarea>
                                 </div>
@@ -168,7 +168,7 @@ const Contact = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="w-full py-4 md:py-5 bg-[var(--color-primary-red)] text-white rounded-xl font-bold text-lg md:text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3 mt-2 md:mt-4"
+                                    className="w-full py-4 md:py-5 bg-[var(--color-primary-green)] text-white rounded-xl font-bold text-lg md:text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3 mt-2 md:mt-4"
                                 >
                                     {isSubmitting ? 'Sending Message...' : 'Send Message'}
                                     {isSubmitting && <div className="w-5 h-5 md:w-6 md:h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>}

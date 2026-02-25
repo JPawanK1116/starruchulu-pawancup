@@ -49,19 +49,19 @@ const Checkout = () => {
 
     if (orderSuccess) {
         return (
-            <div className="min-h-[80vh] flex flex-col items-center justify-center bg-[var(--color-cream)] px-4 text-center">
+            <div className="min-h-[80vh] flex flex-col items-center justify-center bg-[var(--color-bg-white)] px-4 text-center">
                 <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600 shadow-md">
                     <CheckCircle size={48} />
                 </div>
-                <h2 className="text-4xl font-heading font-bold text-[var(--color-dark-text)] mb-4">Order Confirmed!</h2>
+                <h2 className="text-4xl font-heading font-bold text-[var(--color-text-primary)] mb-4">Order Confirmed!</h2>
                 <p className="text-gray-600 text-lg mb-8 max-w-md font-body">
                     Thank you for choosing Star Ruchulu. Your authentic Andhra flavors are being prepared and will be shipped soon.
                 </p>
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8 inline-block text-left">
-                    <p className="font-bold text-gray-800 mb-2">Order ID: <span className="text-[var(--color-primary-red)]">#SR-{Math.floor(1000 + Math.random() * 9000)}-2024</span></p>
+                    <p className="font-bold text-gray-800 mb-2">Order ID: <span className="text-[var(--color-primary-green)]">#SR-{Math.floor(1000 + Math.random() * 9000)}-2024</span></p>
                     <p className="text-gray-600">A confirmation email has been sent to <span className="font-bold">{formData.email}</span></p>
                 </div>
-                <Link to="/" className="px-8 py-4 bg-[var(--color-primary-red)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform">
+                <Link to="/" className="px-8 py-4 bg-[var(--color-primary-green)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform">
                     Return to Home
                 </Link>
             </div>
@@ -69,9 +69,9 @@ const Checkout = () => {
     }
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-8 md:pt-12 pb-16 md:pb-24">
+        <div className="bg-[var(--color-bg-white)] min-h-screen pt-8 md:pt-12 pb-16 md:pb-24">
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-                <h1 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-6 md:mb-8">Secure Checkout</h1>
+                <h1 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-6 md:mb-8">Secure Checkout</h1>
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Checkout Form */}
@@ -80,7 +80,7 @@ const Checkout = () => {
 
                             {/* Contact Info */}
                             <div>
-                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-text-primary)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
                                     <Lock className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Contact Information
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -92,7 +92,7 @@ const Checkout = () => {
                                             required
                                             value={formData.fullName}
                                             onChange={handleInputChange}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                             placeholder="John Doe"
                                         />
                                     </div>
@@ -104,7 +104,7 @@ const Checkout = () => {
                                             required
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                             placeholder="+91 98765 43210"
                                         />
                                     </div>
@@ -116,7 +116,7 @@ const Checkout = () => {
                                             required
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -125,7 +125,7 @@ const Checkout = () => {
 
                             {/* Shipping Address */}
                             <div>
-                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-text-primary)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
                                     <MapPin className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Shipping Address
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -137,7 +137,7 @@ const Checkout = () => {
                                             value={formData.address}
                                             onChange={handleInputChange}
                                             rows="3"
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                             placeholder="House No., Street, Landmark"
                                         ></textarea>
                                     </div>
@@ -149,7 +149,7 @@ const Checkout = () => {
                                             required
                                             value={formData.city}
                                             onChange={handleInputChange}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                         />
                                     </div>
                                     <div>
@@ -158,7 +158,7 @@ const Checkout = () => {
                                             name="state"
                                             value={formData.state}
                                             onChange={handleInputChange}
-                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
+                                            className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow"
                                         >
                                             <option>Andhra Pradesh</option>
                                             <option>Telangana</option>
@@ -177,7 +177,7 @@ const Checkout = () => {
                                                 required
                                                 value={formData.pincode}
                                                 onChange={handleInputChange}
-                                                className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-red)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow pr-20"
+                                                className="w-full bg-gray-50 border border-gray-200 text-gray-900 rounded-lg py-3 px-4 focus:outline-none focus:border-[var(--color-primary-green)] font-medium focus:ring-2 focus:ring-red-100 transition-shadow pr-20"
                                                 placeholder="522426"
                                             />
                                             <button
@@ -193,19 +193,19 @@ const Checkout = () => {
 
                             {/* Payment Method */}
                             <div>
-                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-text-primary)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
                                     <ShieldCheck className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Payment Method
                                 </h2>
                                 <div className="space-y-3 md:space-y-4">
 
-                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'online' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'online' ? 'border-[var(--color-primary-green)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
                                         <input
                                             type="radio"
                                             name="paymentMethod"
                                             value="online"
                                             checked={formData.paymentMethod === 'online'}
                                             onChange={handleInputChange}
-                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
+                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-green)] focus:ring-[var(--color-primary-green)]"
                                         />
                                         <div className="ml-3 md:ml-4 flex-grow flex flex-col sm:flex-row sm:justify-between sm:items-center">
                                             <span className="font-bold text-gray-800 text-sm md:text-lg mb-1 sm:mb-0">Pay Online (UPI, Cards, NetBanking)</span>
@@ -216,14 +216,14 @@ const Checkout = () => {
                                         </div>
                                     </label>
 
-                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary-green)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
                                         <input
                                             type="radio"
                                             name="paymentMethod"
                                             value="cod"
                                             checked={formData.paymentMethod === 'cod'}
                                             onChange={handleInputChange}
-                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
+                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-green)] focus:ring-[var(--color-primary-green)]"
                                         />
                                         <div className="ml-3 md:ml-4">
                                             <span className="block font-bold text-gray-800 text-sm md:text-lg">Cash on Delivery</span>
@@ -237,7 +237,7 @@ const Checkout = () => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-3 md:py-5 bg-[var(--color-primary-red)] text-white rounded-xl font-bold text-base md:text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3"
+                                className="w-full py-3 md:py-5 bg-[var(--color-primary-green)] text-white rounded-xl font-bold text-base md:text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3"
                             >
                                 {isSubmitting ? 'Processing...' : `Place Order (₹${total + deliveryCharge})`}
                                 {isSubmitting && <div className="w-4 h-4 md:w-6 md:h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>}
@@ -252,7 +252,7 @@ const Checkout = () => {
                     {/* Order Summary sidebar */}
                     <div className="lg:w-1/3">
                         <div className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-[var(--color-primary-gold)]/20 sticky top-28">
-                            <h3 className="text-lg md:text-xl font-heading font-bold text-[var(--color-dark-text)] mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100 flex items-center justify-between">
+                            <h3 className="text-lg md:text-xl font-heading font-bold text-[var(--color-text-primary)] mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100 flex items-center justify-between">
                                 Order Summary <span className="bg-gray-100 text-[10px] md:text-sm py-1 px-2 md:px-3 rounded-md font-medium">{cartItems.length} items</span>
                             </h3>
 
@@ -269,7 +269,7 @@ const Checkout = () => {
                                             <h4 className="font-bold text-gray-800 text-sm line-clamp-1">{item.name}</h4>
                                             <p className="text-xs text-gray-500">{item.weight}</p>
                                         </div>
-                                        <div className="font-bold text-[var(--color-primary-red)]">
+                                        <div className="font-bold text-[var(--color-primary-green)]">
                                             ₹{item.finalPrice * item.quantity}
                                         </div>
                                     </div>
@@ -290,7 +290,7 @@ const Checkout = () => {
                             <div className="pt-4 border-t border-dashed border-gray-300">
                                 <div className="flex justify-between items-center">
                                     <span className="text-lg md:text-xl font-bold text-gray-800">Total</span>
-                                    <span className="text-2xl md:text-3xl font-extrabold text-[var(--color-primary-red)]">₹{total + deliveryCharge}</span>
+                                    <span className="text-2xl md:text-3xl font-extrabold text-[var(--color-primary-green)]">₹{total + deliveryCharge}</span>
                                 </div>
                             </div>
                         </div>

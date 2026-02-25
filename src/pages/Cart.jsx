@@ -26,15 +26,15 @@ const Cart = () => {
 
     if (cartItems.length === 0) {
         return (
-            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[var(--color-cream)] px-4">
+            <div className="min-h-[70vh] flex flex-col items-center justify-center bg-[var(--color-bg-white)] px-4">
                 <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-md mb-8">
                     <ShoppingBag size={64} className="text-gray-300" />
                 </div>
-                <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Your Cart is Empty</h2>
+                <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-green)] mb-4">Your Cart is Empty</h2>
                 <p className="text-gray-500 mb-8 font-body text-lg max-w-md text-center">Looks like you haven't added any of our delicious homemade treats yet.</p>
                 <Link
                     to="/shop"
-                    className="px-8 py-4 bg-[var(--color-primary-red)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform"
+                    className="px-8 py-4 bg-[var(--color-primary-green)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform"
                 >
                     Start Shopping
                 </Link>
@@ -43,10 +43,10 @@ const Cart = () => {
     }
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-8 md:pt-12 pb-16 md:pb-24">
+        <div className="bg-[var(--color-bg-white)] min-h-screen pt-8 md:pt-12 pb-16 md:pb-24">
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
                 <div className="flex items-center justify-between mb-8">
-                    <h1 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)]">Shopping Cart</h1>
+                    <h1 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)]">Shopping Cart</h1>
                     <span className="text-gray-500 font-medium text-lg bg-gray-100 px-4 py-2 rounded-lg">{cartItems.length} Items</span>
                 </div>
 
@@ -75,7 +75,7 @@ const Cart = () => {
                                             </div>
                                             <div className="flex flex-col justify-center">
                                                 <span className="text-[10px] md:text-xs font-bold tracking-wider uppercase text-[var(--color-primary-green)] mb-1">{item.category}</span>
-                                                <Link to={`/product/${item.id}`} className="text-base md:text-xl font-heading font-bold text-[var(--color-dark-text)] hover:text-[var(--color-primary-red)] transition-colors pr-8 md:pr-0 line-clamp-2 md:line-clamp-1">
+                                                <Link to={`/product/${item.id}`} className="text-base md:text-xl font-heading font-bold text-[var(--color-text-primary)] hover:text-[var(--color-primary-green)] transition-colors pr-8 md:pr-0 line-clamp-2 md:line-clamp-1">
                                                     {item.name}
                                                 </Link>
                                                 <p className="text-gray-500 mt-1 md:mt-2 flex items-center gap-2">
@@ -83,7 +83,7 @@ const Cart = () => {
                                                 </p>
 
                                                 {/* Mobile Price */}
-                                                <div className="md:hidden mt-2 font-bold text-lg md:text-xl text-[var(--color-primary-red)]">
+                                                <div className="md:hidden mt-2 font-bold text-lg md:text-xl text-[var(--color-primary-green)]">
                                                     ₹{item.finalPrice * item.quantity}
                                                 </div>
                                             </div>
@@ -94,14 +94,14 @@ const Cart = () => {
                                             <div className="flex items-center border-2 border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm w-28 md:w-auto">
                                                 <button
                                                     onClick={() => handleUpdateQuantity(item.id, item.weight, item.quantity - 1)}
-                                                    className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-base md:text-lg"
+                                                    className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-base md:text-lg"
                                                 >
                                                     <Minus size={14} className="md:w-[16px] md:h-[16px]" />
                                                 </button>
                                                 <span className="w-8 md:w-10 text-center font-bold text-base md:text-lg">{item.quantity}</span>
                                                 <button
                                                     onClick={() => handleUpdateQuantity(item.id, item.weight, item.quantity + 1)}
-                                                    className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-base md:text-lg"
+                                                    className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-base md:text-lg"
                                                 >
                                                     <Plus size={14} className="md:w-[16px] md:h-[16px]" />
                                                 </button>
@@ -110,7 +110,7 @@ const Cart = () => {
 
                                         {/* Mobile: Actions row, Desktop: Price & Action */}
                                         <div className="col-span-1 md:col-span-3 hidden md:grid grid-cols-3 gap-4 items-center">
-                                            <div className="col-span-2 text-xl font-bold text-[var(--color-primary-red)] text-right">
+                                            <div className="col-span-2 text-xl font-bold text-[var(--color-primary-green)] text-right">
                                                 ₹{item.finalPrice * item.quantity}
                                             </div>
                                             <div className="col-span-1 flex justify-center">
@@ -140,7 +140,7 @@ const Cart = () => {
                         </div>
 
                         <div className="mt-8 flex justify-between items-center">
-                            <Link to="/shop" className="flex items-center gap-2 text-[var(--color-primary-red)] font-bold hover:underline py-2 px-4 rounded-lg hover:bg-red-50 transition-colors">
+                            <Link to="/shop" className="flex items-center gap-2 text-[var(--color-primary-green)] font-bold hover:underline py-2 px-4 rounded-lg hover:bg-red-50 transition-colors">
                                 <ArrowLeft size={18} /> Continue Shopping
                             </Link>
                         </div>
@@ -149,7 +149,7 @@ const Cart = () => {
                     {/* Order Summary */}
                     <div className="lg:w-1/3">
                         <div className="bg-white rounded-3xl p-8 shadow-sm border border-[var(--color-primary-gold)]/20 sticky top-28">
-                            <h3 className="text-2xl font-heading font-bold text-[var(--color-dark-text)] mb-6 border-b border-gray-100 pb-4">Order Summary</h3>
+                            <h3 className="text-2xl font-heading font-bold text-[var(--color-text-primary)] mb-6 border-b border-gray-100 pb-4">Order Summary</h3>
 
                             <div className="space-y-4 text-lg text-gray-600 mb-6 font-medium">
                                 <div className="flex justify-between">
@@ -169,10 +169,10 @@ const Cart = () => {
                             <div className="pt-6 border-t border-dashed border-gray-300 mb-8">
                                 <div className="flex justify-between items-center mb-2">
                                     <span className="text-lg md:text-xl font-bold text-gray-800">Total</span>
-                                    <span className="text-2xl md:text-4xl font-extrabold text-[var(--color-primary-red)]">₹{finalTotal}</span>
+                                    <span className="text-2xl md:text-4xl font-extrabold text-[var(--color-primary-green)]">₹{finalTotal}</span>
                                 </div>
                                 {deliveryCharge > 0 && (
-                                    <p className="text-[10px] md:text-sm text-center mt-3 md:mt-4 bg-yellow-50 text-[var(--color-primary-red)] py-1.5 md:py-2 rounded-lg font-medium border border-yellow-100">
+                                    <p className="text-[10px] md:text-sm text-center mt-3 md:mt-4 bg-yellow-50 text-[var(--color-primary-green)] py-1.5 md:py-2 rounded-lg font-medium border border-yellow-100">
                                         Add ₹{freeShippingThreshold - total} more for <span className="font-bold">FREE Delivery</span>
                                     </p>
                                 )}

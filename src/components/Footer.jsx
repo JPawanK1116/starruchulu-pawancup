@@ -3,13 +3,13 @@ import { Facebook, Instagram, Twitter, Mail, MapPin, Phone } from 'lucide-react'
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white pt-16 pb-24 md:pb-12 border-t-4 border-[var(--color-primary-gold)]">
+        <footer className="bg-[var(--color-footer-bg)] text-[#F5F5F5] pt-16 pb-24 md:pb-12 border-t-2 border-white/10">
             <div className="container mx-auto px-4 md:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
                     {/* Brand Info */}
                     <div>
                         <h3 className="text-3xl font-heading font-bold text-[var(--color-primary-gold)] mb-6">Star Ruchulu</h3>
-                        <p className="text-gray-400 mb-6 font-body leading-relaxed">
+                        <p className="text-gray-300 mb-6 font-body leading-relaxed max-w-sm">
                             Authentic homemade Andhra flavors delivered fresh from Macherla, Palnadu District to any corner of India.
                         </p>
                         <div className="flex space-x-4">
@@ -66,14 +66,14 @@ const Footer = () => {
                         </ul>
 
                         <div className="mt-6">
-                            <h5 className="font-bold mb-3">Newsletter</h5>
-                            <div className="flex">
+                            <h5 className="font-bold mb-3 text-[var(--color-primary-gold)]">Newsletter</h5>
+                            <div className="flex bg-white/5 rounded-md p-1 border border-white/10 focus-within:border-[var(--color-primary-gold)] transition-colors">
                                 <input
                                     type="email"
                                     placeholder="Your email address"
-                                    className="bg-white border-2 border-[var(--color-primary-gold)] px-4 py-2 text-gray-900 w-full rounded-l focus:ring-1 focus:ring-[var(--color-primary-gold)] outline-none"
+                                    className="bg-transparent border-none px-3 py-2 text-white w-full rounded-l focus:ring-0 outline-none placeholder-gray-400"
                                 />
-                                <button className="bg-[var(--color-primary-gold)] text-black px-4 py-2 font-bold rounded-r border-y-2 border-r-2 border-[var(--color-primary-gold)] hover:bg-yellow-500 transition-colors">
+                                <button className="bg-[var(--color-primary-gold)] text-[var(--color-primary-green)] px-5 py-2 font-bold rounded hover:bg-white transition-colors">
                                     Subscribe
                                 </button>
                             </div>

@@ -43,16 +43,16 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="bg-[var(--color-cream)] pt-20 md:pt-24 pb-10 md:pb-16 min-h-screen">
+        <div className="bg-[var(--color-bg-white)] pt-20 md:pt-24 pb-10 md:pb-16 min-h-screen">
             <div className="container mx-auto px-4 md:px-8">
 
                 {/* Breadcrumbs */}
                 <nav className="text-sm font-medium text-gray-500 mb-8 flex gap-2">
-                    <a href="/" className="hover:text-[var(--color-primary-red)] transition-colors">Home</a>
+                    <a href="/" className="hover:text-[var(--color-primary-green)] transition-colors">Home</a>
                     <span>/</span>
-                    <a href="/shop" className="hover:text-[var(--color-primary-red)] transition-colors">Shop</a>
+                    <a href="/shop" className="hover:text-[var(--color-primary-green)] transition-colors">Shop</a>
                     <span>/</span>
-                    <a href={`/shop/${product.category}`} className="hover:text-[var(--color-primary-red)] transition-colors">{product.category}</a>
+                    <a href={`/shop/${product.category}`} className="hover:text-[var(--color-primary-green)] transition-colors">{product.category}</a>
                     <span>/</span>
                     <span className="text-gray-900 font-bold">{product.name}</span>
                 </nav>
@@ -81,7 +81,7 @@ const ProductDetails = () => {
                         {/* Thumbnails (Static 3 identical for demo) */}
                         <div className="flex gap-4">
                             {[1, 2, 3].map(thumb => (
-                                <button key={thumb} className="w-24 aspect-square rounded-xl overflow-hidden border-2 border-transparent hover:border-[var(--color-primary-red)] transition-all">
+                                <button key={thumb} className="w-24 aspect-square rounded-xl overflow-hidden border-2 border-transparent hover:border-[var(--color-primary-green)] transition-all">
                                     <img src={product.image} alt="Thumbnail relative" className="w-full h-full object-cover opacity-75 hover:opacity-100" />
                                 </button>
                             ))}
@@ -90,7 +90,7 @@ const ProductDetails = () => {
 
                     {/* Details */}
                     <div className="lg:w-1/2 flex flex-col">
-                        <h1 className="text-2xl md:text-5xl font-heading font-extrabold text-[var(--color-primary-red)] mb-2 md:mb-4">{product.name}</h1>
+                        <h1 className="text-2xl md:text-5xl font-heading font-extrabold text-[var(--color-primary-green)] mb-2 md:mb-4">{product.name}</h1>
 
                         <div className="flex items-center gap-4 mb-6">
                             <div className="flex text-[var(--color-primary-gold)]">
@@ -109,7 +109,7 @@ const ProductDetails = () => {
 
                         {/* Price */}
                         <div className="mb-6 md:mb-8 p-3 md:p-4 bg-red-50/50 rounded-xl border border-red-100">
-                            <span className="text-3xl md:text-4xl font-bold text-[var(--color-dark-text)] flex items-end gap-2">
+                            <span className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] flex items-end gap-2">
                                 ₹{price} <span className="text-sm md:text-lg text-gray-500 font-normal line-through mb-1">₹{Math.floor(price * 1.2)}</span>
                             </span>
                             <p className="text-[10px] md:text-sm text-[var(--color-primary-green)] font-medium mt-1">Inclusive of all local taxes</p>
@@ -120,7 +120,7 @@ const ProductDetails = () => {
 
                             <div>
                                 <h3 className="font-bold text-gray-800 mb-3 flex justify-between items-center">
-                                    Select Weight <span className="text-sm font-normal text-gray-500 underline cursor-pointer hover:text-[var(--color-primary-red)]">View Box Sizes</span>
+                                    Select Weight <span className="text-sm font-normal text-gray-500 underline cursor-pointer hover:text-[var(--color-primary-green)]">View Box Sizes</span>
                                 </h3>
                                 <div className="flex flex-wrap gap-3">
                                     {Object.keys(product.pricePerWeight).map(weight => (
@@ -128,7 +128,7 @@ const ProductDetails = () => {
                                             key={weight}
                                             onClick={() => setSelectedWeight(weight)}
                                             className={`py-2 px-4 md:py-3 md:px-6 rounded-xl font-bold border-2 transition-all text-sm md:text-base ${selectedWeight === weight
-                                                ? 'border-[var(--color-primary-red)] bg-red-50 text-[var(--color-primary-red)] shadow-sm scale-[1.02]'
+                                                ? 'border-[var(--color-primary-green)] bg-red-50 text-[var(--color-primary-green)] shadow-sm scale-[1.02]'
                                                 : 'border-gray-200 text-gray-600 hover:border-red-200 hover:bg-red-50/50'
                                                 }`}
                                         >
@@ -143,7 +143,7 @@ const ProductDetails = () => {
                                 <div className="flex items-center w-32 border-2 border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
                                     <button
                                         onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-xl font-medium"
+                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-xl font-medium"
                                     >
                                         -
                                     </button>
@@ -155,7 +155,7 @@ const ProductDetails = () => {
                                     />
                                     <button
                                         onClick={() => setQuantity(q => q + 1)}
-                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-red)] transition-colors text-xl font-medium"
+                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-xl font-medium"
                                     >
                                         +
                                     </button>
@@ -168,7 +168,7 @@ const ProductDetails = () => {
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-8 md:mt-10 pb-6 md:pb-8 border-b border-gray-100">
                             <button
                                 onClick={handleAddToCart}
-                                className="flex-1 py-3 md:py-4 px-4 md:px-6 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
+                                className="flex-1 py-3 md:py-4 px-4 md:px-6 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
                             >
                                 <ShoppingCart size={20} /> Add to Cart
                             </button>
@@ -185,8 +185,8 @@ const ProductDetails = () => {
 
                         {/* Meta Info */}
                         <div className="mt-8 flex gap-6 text-sm font-medium text-gray-500">
-                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-red)] transition-colors"><Share2 size={18} /> Share</button>
-                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-red)] transition-colors"><Info size={18} /> Ask Question</button>
+                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-green)] transition-colors"><Share2 size={18} /> Share</button>
+                            <button className="flex items-center gap-2 hover:text-[var(--color-primary-green)] transition-colors"><Info size={18} /> Ask Question</button>
                         </div>
 
                     </div>
@@ -196,19 +196,19 @@ const ProductDetails = () => {
                 <div className="mb-10 md:mb-16 bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div className="flex flex-wrap border-b border-gray-100 bg-gray-50">
                         <button
-                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'description' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'description' ? 'border-[var(--color-primary-green)] text-[var(--color-primary-green)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('description')}
                         >
                             <LayoutList size={16} className="md:w-[18px] md:h-[18px]" /> Details
                         </button>
                         <button
-                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'ingredients' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'ingredients' ? 'border-[var(--color-primary-green)] text-[var(--color-primary-green)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('ingredients')}
                         >
                             <Package size={16} className="md:w-[18px] md:h-[18px]" /> Ingredients
                         </button>
                         <button
-                            className={`flex-1 min-w-[100px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'reviews' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[100px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'reviews' ? 'border-[var(--color-primary-green)] text-[var(--color-primary-green)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('reviews')}
                         >
                             <Star size={16} className="md:w-[18px] md:h-[18px]" /> Reviews
@@ -221,7 +221,7 @@ const ProductDetails = () => {
                                 <p className="mb-4">Experience the bold, fiery, and deeply comforting flavors of our {product.name}. Carefully prepared using a traditional recipe straight from the heart of {product.region}.</p>
                                 <div className="grid md:grid-cols-2 gap-8 mt-8">
                                     <div className="bg-red-50/50 p-6 rounded-xl border border-red-100">
-                                        <h4 className="font-bold text-[var(--color-primary-red)] flex items-center gap-2 mb-2"><Info size={16} /> Shelf Life</h4>
+                                        <h4 className="font-bold text-[var(--color-primary-green)] flex items-center gap-2 mb-2"><Info size={16} /> Shelf Life</h4>
                                         <p>{product.shelfLife}</p>
                                     </div>
                                     <div className="bg-green-50/50 p-6 rounded-xl border border-green-100">
@@ -251,13 +251,13 @@ const ProductDetails = () => {
                                             <div className="flex text-[var(--color-primary-gold)]">
                                                 {[1, 2, 3, 4, 5].map(star => <Star key={star} size={14} fill="currentColor" />)}
                                             </div>
-                                            <span className="font-bold text-[var(--color-dark-text)]">Awesome Taste!</span>
+                                            <span className="font-bold text-[var(--color-text-primary)]">Awesome Taste!</span>
                                         </div>
                                         <p className="text-gray-600 mb-3 text-lg leading-relaxed">"This tastes exactly like the ones my grandmother used to make. The spice levels are perfect and you can taste the high quality oil and ingredients used. A masterclass in pickling."</p>
                                         <span className="text-sm text-gray-400 font-medium">Verified Buyer - 2 days ago</span>
                                     </div>
                                 ))}
-                                <button className="px-6 py-2 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-lg font-bold hover:bg-red-50 transition-colors">Write a Review</button>
+                                <button className="px-6 py-2 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] rounded-lg font-bold hover:bg-red-50 transition-colors">Write a Review</button>
                             </div>
                         )}
                     </div>
@@ -267,8 +267,8 @@ const ProductDetails = () => {
                 {relatedProducts.length > 0 && (
                     <div>
                         <div className="flex justify-between items-end mb-8">
-                            <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-red)]">Pairs Well With</h2>
-                            <a href="/shop" className="text-[var(--color-primary-red)] font-bold hover:underline hidden md:block">View All</a>
+                            <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-green)]">Pairs Well With</h2>
+                            <a href="/shop" className="text-[var(--color-primary-green)] font-bold hover:underline hidden md:block">View All</a>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
                             {relatedProducts.map(rp => (

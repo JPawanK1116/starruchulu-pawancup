@@ -21,32 +21,33 @@ const Home = () => {
     return (
         <div className="w-full relative">
             {/* Hero Section */}
-            <section className="relative h-[60vh] md:h-[80vh] min-h-[450px] md:min-h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
-                <div className="absolute inset-0 z-0 opacity-60">
+            <section className="relative h-[60vh] md:h-[80vh] min-h-[450px] md:min-h-[600px] flex items-center justify-start overflow-hidden bg-gray-100 bg-fixed">
+                <div className="absolute inset-0 z-0">
                     <img
                         src="/images/andhra-food-hero.jpg"
                         alt="Authentic Andhra Food"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-right"
                         loading="eager"
                     />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/60 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
 
-                <div className="container relative z-20 px-4 md:px-8 text-center mt-12">
-                    <span className="inline-block py-1 px-4 text-xs md:text-sm font-bold tracking-widest text-[var(--color-primary-gold)] border border-[var(--color-primary-gold)] rounded-full mb-6 uppercase bg-black/30 backdrop-blur-sm">
+                <div className="container relative z-20 px-4 md:px-8 text-left mt-12 w-full max-w-6xl mx-auto">
+                    <span className="inline-block py-1 px-4 text-xs md:text-sm font-bold tracking-widest text-[var(--color-primary-green)] border border-[var(--color-primary-gold)] rounded-full mb-6 uppercase bg-white/50 backdrop-blur-sm">
                         Premium Quality Homemade Foods
                     </span>
-                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white mb-4 md:mb-6 leading-tight drop-shadow-2xl max-w-5xl mx-auto">
+                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-extrabold text-[var(--color-primary-green)] mb-4 md:mb-6 leading-tight max-w-3xl">
                         Authentic Andhra Flavours <br className="hidden md:block" />
                         <span className="text-[var(--color-primary-gold)]">Delivered Pan-India</span>
                     </h1>
-                    <p className="text-base md:text-2xl text-gray-200 font-body mb-8 md:mb-10 max-w-3xl mx-auto drop-shadow-md px-2">
+                    <div className="w-16 h-1 bg-[var(--color-primary-gold)] mb-6 md:mb-8"></div>
+                    <p className="text-base md:text-2xl text-[var(--color-text-secondary)] font-body mb-8 md:mb-10 max-w-2xl drop-shadow-sm">
                         Handcrafted pickles, traditional sweets, and crunchy snacks made with love from the kitchens of Palnadu.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-4 justify-start items-center md:items-start">
                         <Link
                             to="/shop"
-                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-[var(--color-primary-red)] hover:bg-red-700 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-[var(--color-primary-green)] hover:bg-[var(--color-secondary-green)] text-white font-bold rounded-xl text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
                         >
                             Shop Now
                         </Link>
@@ -54,7 +55,7 @@ const Home = () => {
                             href="https://wa.me/919876543210?text=I want to order from Star Ruchulu"
                             target="_blank"
                             rel="noreferrer"
-                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-green-500 hover:bg-green-600 text-white font-bold rounded-full text-base md:text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-white border border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-gray-50 font-bold rounded-xl text-base md:text-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center"
                         >
                             Order on WhatsApp
                         </a>
@@ -63,10 +64,10 @@ const Home = () => {
             </section>
 
             {/* Regional Specialties */}
-            <section className="py-12 md:py-20 bg-[var(--color-cream)]">
+            <section className="py-12 md:py-20 bg-[var(--color-bg-white)]">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="text-center mb-8 md:mb-16">
-                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Flavors by Region</h2>
+                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-3 md:mb-4">Flavors by Region</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">Every district in Andhra Pradesh has a unique culinary story. Explore our distinct regional offerings.</p>
                     </div>
 
@@ -96,16 +97,16 @@ const Home = () => {
             <CategoryGrid />
 
             {/* Best Sellers */}
-            <section className="py-12 md:py-24 bg-[var(--color-cream)] relative">
+            <section className="py-12 md:py-24 bg-[var(--color-bg-white)] relative">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-8 md:mb-16">
                         <div className="text-center md:text-left w-full">
-                            <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Our Best Sellers</h2>
+                            <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-3 md:mb-4">Our Best Sellers</h2>
                             <p className="text-gray-600 font-body text-sm md:text-lg max-w-xl mx-auto md:mx-0">
                                 The most loved recipes that keep our customers coming back for more. Must-try for first timers!
                             </p>
                         </div>
-                        <Link to="/shop" className="hidden md:inline-flex mt-6 md:mt-0 px-6 py-3 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-full font-bold hover:bg-[var(--color-primary-red)] hover:text-white transition-colors">
+                        <Link to="/shop" className="hidden md:inline-flex mt-6 md:mt-0 px-6 py-3 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] rounded-full font-bold hover:bg-[var(--color-primary-green)] hover:text-white transition-colors">
                             View Entire Menu
                         </Link>
                     </div>
@@ -116,7 +117,7 @@ const Home = () => {
                         ))}
                     </div>
                     <div className="mt-10 text-center md:hidden">
-                        <Link to="/shop" className="inline-block px-8 py-4 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] rounded-full font-bold hover:bg-[var(--color-primary-red)] hover:text-white transition-colors">
+                        <Link to="/shop" className="inline-block px-8 py-4 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] rounded-full font-bold hover:bg-[var(--color-primary-green)] hover:text-white transition-colors">
                             View Entire Menu
                         </Link>
                     </div>
@@ -127,7 +128,7 @@ const Home = () => {
             <section className="py-12 md:py-24 bg-white border-y border-gray-100">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="text-center mb-10 md:mb-16">
-                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">From Our Kitchen To You</h2>
+                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-3 md:mb-4">From Our Kitchen To You</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">Our commitment to quality, tradition, and taste in every step.</p>
                     </div>
 
@@ -143,7 +144,7 @@ const Home = () => {
                         </div>
 
                         <div className="text-center flex flex-col items-center">
-                            <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-[var(--color-primary-red)] mb-6 shadow-sm border border-red-100">
+                            <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center text-[var(--color-primary-green)] mb-6 shadow-sm border border-red-100">
                                 <Award size={32} />
                             </div>
                             <h3 className="text-xl font-bold font-heading mb-3">Traditional Preparation</h3>

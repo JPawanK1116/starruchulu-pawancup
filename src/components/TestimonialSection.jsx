@@ -14,7 +14,7 @@ const TestimonialSection = () => {
 
             <div className="container mx-auto px-4 md:px-8 relative z-10">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-4">Happy Customers</h2>
+                    <h2 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-4">Happy Customers</h2>
                     <p className="text-gray-500 max-w-2xl mx-auto font-body text-lg">Don't just take our word for it. Here's what food lovers across India have to say about our flavors.</p>
                 </div>
 
@@ -33,11 +33,11 @@ const TestimonialSection = () => {
                                 <p className="text-gray-700 italic font-body mb-8 min-h-[100px] text-lg leading-relaxed">"{test.text}"</p>
 
                                 <div className="flex items-center">
-                                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-[var(--color-primary-red)] font-heading font-bold text-xl mr-4 shadow-sm">
+                                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-[var(--color-primary-green)] font-heading font-bold text-xl mr-4 shadow-sm">
                                         {test.name.charAt(0)}
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-[var(--color-dark-text)]">{test.name}</h4>
+                                        <h4 className="font-bold text-[var(--color-text-primary)]">{test.name}</h4>
                                         <span className="text-sm text-gray-500">{test.location}</span>
                                     </div>
                                 </div>

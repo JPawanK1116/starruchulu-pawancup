@@ -22,15 +22,15 @@ const About = () => {
             <div className="container mx-auto px-4 md:px-8 mt-10 md:mt-20 mb-12 md:mb-24 max-w-6xl">
                 <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
                     <div className="md:w-1/2">
-                        <h2 className="text-2xl md:text-4xl font-heading font-bold text-[var(--color-primary-red)] mb-4 md:mb-6">The Roots of Star Ruchulu</h2>
+                        <h2 className="text-2xl md:text-4xl font-heading font-bold text-[var(--color-primary-green)] mb-4 md:mb-6">The Roots of Star Ruchulu</h2>
                         <p className="text-gray-600 font-body text-sm md:text-lg mb-4 md:mb-6 leading-relaxed">
                             Star Ruchulu was born from a simple desire: to preserve the authentic taste of homemade Andhra delicacies that are slowly being replaced by commercially manufactured products.
                         </p>
                         <p className="text-gray-600 font-body text-sm md:text-lg mb-4 md:mb-6 leading-relaxed">
                             Located in the historic town of Macherla in the Palnadu district, our kitchen operates entirely differently from a factory. We don't use large industrial machines. Instead, we rely on the skilled hands of local women who have been perfecting these recipes for decades.
                         </p>
-                        <div className="mt-6 md:mt-10 p-5 md:p-6 bg-[var(--color-cream)] rounded-2xl border-l-4 border-[var(--color-primary-gold)]">
-                            <p className="text-[var(--color-primary-red)] font-heading font-medium text-lg md:text-xl italic leading-relaxed">
+                        <div className="mt-6 md:mt-10 p-5 md:p-6 bg-[var(--color-bg-white)] rounded-2xl border-l-4 border-[var(--color-primary-gold)]">
+                            <p className="text-[var(--color-primary-green)] font-heading font-medium text-lg md:text-xl italic leading-relaxed">
                                 "We don't make food for customers. We make food for family that we just haven't met yet."
                             </p>
                         </div>
@@ -46,16 +46,16 @@ const About = () => {
             </div>
 
             {/* Core Values */}
-            <div className="bg-[var(--color-cream)] py-12 md:py-20 border-y border-gray-100">
+            <div className="bg-[var(--color-bg-white)] py-12 md:py-20 border-y border-gray-100">
                 <div className="container mx-auto px-4 md:px-8">
                     <div className="text-center mb-8 md:mb-16">
-                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Our Promise</h2>
+                        <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-3 md:mb-4">Our Promise</h2>
                         <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">What makes Star Ruchulu the most trusted brand for authentic Andhra foods.</p>
                     </div>
 
                     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
                         <div className="bg-white p-4 md:p-8 rounded-2xl shadow-sm border border-gray-100 text-center hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-red-50 text-[var(--color-primary-red)] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-red-50 text-[var(--color-primary-green)] rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
                                 <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" />
                             </div>
                             <h3 className="text-base md:text-xl font-bold font-heading text-gray-800 mb-2 md:mb-3">Zero Preservatives</h3>
@@ -91,8 +91,8 @@ const About = () => {
 
             {/* CTA */}
             <div className="container mx-auto px-4 mt-12 md:mt-20 text-center">
-                <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-dark-text)] mb-6">Ready to taste the tradition?</h2>
-                <Link to="/shop" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-[var(--color-primary-red)] text-white rounded-full font-bold text-base md:text-lg hover:bg-red-800 shadow-xl hover:-translate-y-1 transform transition-all duration-300">
+                <h2 className="text-2xl md:text-3xl font-heading font-bold text-[var(--color-text-primary)] mb-6">Ready to taste the tradition?</h2>
+                <Link to="/shop" className="inline-block px-8 py-4 md:px-10 md:py-5 bg-[var(--color-primary-green)] text-white rounded-full font-bold text-base md:text-lg hover:bg-red-800 shadow-xl hover:-translate-y-1 transform transition-all duration-300">
                     Explore Our Menu
                 </Link>
             </div>

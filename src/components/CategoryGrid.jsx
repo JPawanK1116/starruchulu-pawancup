@@ -14,7 +14,7 @@ const CategoryGrid = () => {
         <section className="py-12 md:py-24 bg-white">
             <div className="container mx-auto px-4 md:px-8">
                 <div className="text-center mb-8 md:mb-12">
-                    <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-3 md:mb-4">Shop by Category</h2>
+                    <h2 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-green)] mb-3 md:mb-4">Shop by Category</h2>
                     <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-base">Explore our wide range of authentic homemade delicacies categorized for your convenience.</p>
                 </div>
 

@@ -30,14 +30,14 @@ const CartDrawer = ({ isOpen, onClose }) => {
                 className={`fixed inset-y-0 right-0 z-[60] w-full md:w-[400px] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${isOpen ? 'translate-x-0' : 'translate-x-full'
                     }`}
             >
-                <div className="flex items-center justify-between p-4 border-b border-gray-100 text-[var(--color-primary-red)]">
+                <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-[var(--color-card-bg)] text-[var(--color-primary-green)]">
                     <h2 className="text-xl font-heading font-bold">Your Cart</h2>
-                    <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                    <button onClick={onClose} className="p-2 hover:bg-white rounded-full transition-colors">
                         <X size={24} />
                     </button>
                 </div>
 
-                <div className="bg-green-50 p-3 text-center text-sm font-medium text-green-800">
+                <div className="bg-[var(--color-card-bg)] p-3 text-center text-sm font-medium text-[var(--color-primary-gold)] border-b border-gray-100">
                     {isFreeShipping
                         ? "✨ You've unlocked Free Shipping!"
                         : `Add ₹${freeShippingThreshold - total} more for Free Shipping`}
@@ -49,7 +49,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                             <p className="text-lg">Your cart is empty</p>
                             <button
                                 onClick={onClose}
-                                className="mt-4 px-6 py-2 bg-[var(--color-primary-red)] text-white font-medium rounded-md"
+                                className="mt-4 px-6 py-2 bg-[var(--color-primary-green)] text-white font-medium rounded-md"
                             >
                                 Continue Shopping
                             </button>
@@ -62,7 +62,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                                 </div>
                                 <div className="flex-grow">
                                     <div className="flex justify-between items-start">
-                                        <h3 className="font-heading font-bold text-[var(--color-dark-text)]">{item.name}</h3>
+                                        <h3 className="font-heading font-bold text-[var(--color-text-primary)]">{item.name}</h3>
                                         <button
                                             onClick={() => removeFromCart(item.id, item.weight)}
                                             className="text-gray-400 hover:text-red-500 transition-colors"
@@ -88,7 +88,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
                                                 <Plus size={14} />
                                             </button>
                                         </div>
-                                        <span className="font-bold text-[var(--color-primary-red)] text-lg">
+                                        <span className="font-bold text-[var(--color-primary-green)] text-lg">
                                             ₹{item.finalPrice * item.quantity}
                                         </span>
                                     </div>
@@ -99,24 +99,24 @@ const CartDrawer = ({ isOpen, onClose }) => {
                 </div>
 
                 {cartItems.length > 0 && (
-                    <div className="p-4 bg-gray-50 border-t border-gray-200 space-y-4">
+                    <div className="p-4 bg-[var(--color-bg-white)] border-t border-gray-100 space-y-4 shadow-[0_-4px_20px_rgba(0,0,0,0.03)] z-10">
                         <div className="flex justify-between items-center text-lg font-bold">
-                            <span>Subtotal</span>
-                            <span className="text-[var(--color-primary-red)]">₹{total}</span>
+                            <span className="text-[var(--color-text-primary)]">Subtotal</span>
+                            <span className="text-[var(--color-primary-green)]">₹{total}</span>
                         </div>
-                        <p className="text-xs text-gray-500 text-center">Taxes and shipping calculated at checkout</p>
-                        <div className="flex flex-col gap-2">
+                        <p className="text-xs text-[var(--color-text-muted)] text-center">Taxes and shipping calculated at checkout</p>
+                        <div className="flex flex-col gap-3">
                             <Link
                                 to="/cart"
                                 onClick={onClose}
-                                className="w-full py-3 text-center font-bold border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] hover:bg-[var(--color-primary-red)] hover:text-white transition-colors rounded-md"
+                                className="w-full py-3 text-center font-bold bg-white text-[var(--color-primary-green)] border border-[var(--color-primary-green)] hover:bg-[var(--color-bg-alt)] transition-colors rounded-xl"
                             >
                                 View Cart
                             </Link>
                             <Link
                                 to="/checkout"
                                 onClick={onClose}
-                                className="w-full py-3 text-center font-bold bg-[var(--color-primary-gold)] text-gray-900 hover:brightness-105 transition-all rounded-md"
+                                className="w-full py-3 text-center font-bold bg-[var(--color-primary-green)] text-white hover:bg-[var(--color-secondary-green)] transition-all rounded-xl shadow-md hover:shadow-lg hover:-translate-y-0.5 transform"
                             >
                                 Checkout
                             </Link>

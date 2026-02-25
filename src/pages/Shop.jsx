@@ -50,9 +50,9 @@ const Shop = () => {
     }, [activeCategory, activeSort]);
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-2 md:pt-4 pb-16 md:pb-20">
+        <div className="bg-[var(--color-bg-white)] min-h-screen pt-2 md:pt-4 pb-16 md:pb-20">
             {/* Banner */}
-            <div className="bg-[var(--color-primary-red)] text-white py-6 md:py-16 text-center shadow-inner">
+            <div className="bg-[var(--color-primary-green)] text-white py-6 md:py-16 text-center shadow-inner">
                 <h1 className="text-2xl md:text-5xl font-heading font-bold mb-2 md:mb-4 drop-shadow-md">
                     {activeCategory === 'All' ? 'Our Menu' : activeCategory}
                 </h1>
@@ -78,7 +78,7 @@ const Shop = () => {
                     {/* Sidebar / Filters */}
                     <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
                         <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-gray-100 sticky top-28">
-                            <h3 className="font-heading font-bold text-2xl text-[var(--color-primary-red)] mb-6 pb-4 border-b border-gray-100">
+                            <h3 className="font-heading font-bold text-2xl text-[var(--color-primary-green)] mb-6 pb-4 border-b border-gray-100">
                                 Categories
                             </h3>
                             <ul className="space-y-3 font-body">
@@ -87,8 +87,8 @@ const Shop = () => {
                                         <Link
                                             to={cat === 'All' ? '/shop' : `/shop/${cat}`}
                                             className={`block px-3 py-2 rounded-lg transition-colors text-lg ${activeCategory === cat
-                                                ? 'bg-[var(--color-primary-red)] text-white font-bold shadow-md'
-                                                : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-red)]'
+                                                ? 'bg-[var(--color-primary-green)] text-white font-bold shadow-md'
+                                                : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-green)]'
                                                 }`}
                                             onClick={() => setShowFilters(false)}
                                         >
@@ -98,12 +98,12 @@ const Shop = () => {
                                 ))}
                             </ul>
 
-                            <h3 className="font-heading font-bold text-2xl text-[var(--color-primary-red)] mt-10 mb-6 pb-4 border-b border-gray-100">
+                            <h3 className="font-heading font-bold text-2xl text-[var(--color-primary-green)] mt-10 mb-6 pb-4 border-b border-gray-100">
                                 Sort By
                             </h3>
                             <div className="relative">
                                 <select
-                                    className="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-[var(--color-primary-red)] font-medium font-body focus:ring-2 focus:ring-red-100 transition-shadow"
+                                    className="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-lg leading-tight focus:outline-none focus:bg-white focus:border-[var(--color-primary-green)] font-medium font-body focus:ring-2 focus:ring-red-100 transition-shadow"
                                     value={activeSort}
                                     onChange={(e) => setActiveSort(e.target.value)}
                                 >
@@ -127,7 +127,7 @@ const Shop = () => {
                                 </div>
                                 <h3 className="text-2xl font-bold text-gray-800 mb-2">No products found</h3>
                                 <p className="text-gray-500 mb-6">We couldn't find any items matching your current filters.</p>
-                                <Link to="/shop" className="px-6 py-3 bg-[var(--color-primary-red)] text-white rounded-full font-bold">
+                                <Link to="/shop" className="px-6 py-3 bg-[var(--color-primary-green)] text-white rounded-full font-bold">
                                     Clear Filters
                                 </Link>
                             </div>
@@ -141,7 +141,7 @@ const Shop = () => {
 
                         {products.length > 0 && (
                             <div className="mt-8 md:mt-16 text-center">
-                                <button className="px-6 py-2.5 md:px-8 md:py-3 border-2 border-[var(--color-primary-gold)] text-[var(--color-dark-text)] rounded-full font-bold hover:bg-[var(--color-primary-gold)] transition-colors shadow-sm text-sm md:text-base">
+                                <button className="px-6 py-2.5 md:px-8 md:py-3 border-2 border-[var(--color-primary-gold)] text-[var(--color-text-primary)] rounded-full font-bold hover:bg-[var(--color-primary-gold)] transition-colors shadow-sm text-sm md:text-base">
                                     Load More Products
                                 </button>
                             </div>
