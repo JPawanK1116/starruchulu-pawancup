@@ -71,9 +71,9 @@ const Footer = () => {
                                 <input
                                     type="email"
                                     placeholder="Your email address"
-                                    className="bg-gray-800 border-none px-4 py-2 text-white w-full rounded-l focus:ring-1 focus:ring-[var(--color-primary-gold)] outline-none"
+                                    className="bg-white border-2 border-[var(--color-primary-gold)] px-4 py-2 text-gray-900 w-full rounded-l focus:ring-1 focus:ring-[var(--color-primary-gold)] outline-none"
                                 />
-                                <button className="bg-[var(--color-primary-gold)] text-black px-4 py-2 font-bold rounded-r hover:bg-yellow-500 transition-colors">
+                                <button className="bg-[var(--color-primary-gold)] text-black px-4 py-2 font-bold rounded-r border-y-2 border-r-2 border-[var(--color-primary-gold)] hover:bg-yellow-500 transition-colors">
                                     Subscribe
                                 </button>
                             </div>
