@@ -28,6 +28,7 @@ const Home = () => {
                         alt="Authentic Andhra Food"
                         className="w-full h-full object-cover object-right"
                         loading="eager"
+                        onError={(e) => { e.target.onerror = null; e.target.src = "/images/placeholder.jpg"; }}
                     />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent z-10" />
@@ -79,6 +80,7 @@ const Home = () => {
                                     alt={region.name}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     loading="lazy"
+                                    onError={(e) => { e.target.onerror = null; e.target.src = "/images/placeholder.jpg"; }}
                                 />
                                 <div className={`absolute inset-0 ${region.color} opacity-40 mix-blend-multiply transition-opacity group-hover:opacity-60`}></div>
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">

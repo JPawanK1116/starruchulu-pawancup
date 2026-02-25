@@ -33,7 +33,7 @@ const ComboSection = () => {
                             </div>
 
                             <div className="aspect-[4/3] rounded-2xl overflow-hidden mb-6 mt-4">
-                                <img src={combo.image} alt={combo.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 bg-gray-100" />
+                                <img src={combo.image} alt={combo.name} className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 bg-gray-100" onError={(e) => { e.target.onerror = null; e.target.src = "/images/placeholder.jpg"; }} />
                             </div>
 
                             <h3 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-text-primary)] mb-2 md:mb-3">{combo.name}</h3>

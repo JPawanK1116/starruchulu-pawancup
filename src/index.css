@@ -17,6 +17,10 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-[var(--color-bg-white)] text-[var(--color-text-primary)] font-body;
   }

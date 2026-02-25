@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import StickyCrawlupBar from './components/StickyCrawlupBar';
 import WhatsAppFloat from './components/WhatsAppFloat';
+import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
@@ -14,6 +15,7 @@ import Contact from './pages/Contact';
 function App() {
   return (
     <div className="min-h-screen flex flex-col relative pb-8">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-grow">
         <Routes>
