@@ -1,11 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-red: #8B0000;
-  --color-primary-gold: #E6A817;
-  --color-primary-green: #2E7D32;
-  --color-cream: #FFF8E7;
-  --color-dark-text: #2C2C2C;
+  --color-primary-red: #1B5E20;
+  /* Deep Green / Primary */
+  --color-primary-gold: #FBC02D;
+  /* Gold Accent */
+  --color-primary-green: #388E3C;
+  /* Secondary Green */
+  --color-cream: #FFFFFF;
+  /* Pure White for clear contrast */
+  --color-dark-text: #1C2822;
+  /* Dark Greenish Grey */
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Poppins', sans-serif;
 }
@@ -14,7 +19,13 @@
   body {
     @apply bg-[var(--color-cream)] text-[var(--color-dark-text)] font-body;
   }
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading text-[var(--color-primary-red)];
   }
 }

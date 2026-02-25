@@ -43,7 +43,7 @@ const ProductDetails = () => {
     };
 
     return (
-        <div className="bg-[var(--color-cream)] pt-24 pb-16 min-h-screen">
+        <div className="bg-[var(--color-cream)] pt-20 md:pt-24 pb-10 md:pb-16 min-h-screen">
             <div className="container mx-auto px-4 md:px-8">
 
                 {/* Breadcrumbs */}
@@ -58,7 +58,7 @@ const ProductDetails = () => {
                 </nav>
 
                 {/* Product Section */}
-                <div className="flex flex-col lg:flex-row gap-12 bg-white rounded-3xl p-6 md:p-12 shadow-md border border-[var(--color-primary-gold)]/20 mb-16 relative">
+                <div className="flex flex-col lg:flex-row gap-6 md:gap-12 bg-white rounded-3xl p-5 md:p-12 shadow-md border border-[var(--color-primary-gold)]/20 mb-10 md:mb-16 relative">
 
                     {/* Decorative element */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--color-primary-gold)]/10 rounded-bl-full pointer-events-none"></div>
@@ -90,7 +90,7 @@ const ProductDetails = () => {
 
                     {/* Details */}
                     <div className="lg:w-1/2 flex flex-col">
-                        <h1 className="text-4xl md:text-5xl font-heading font-extrabold text-[var(--color-primary-red)] mb-4">{product.name}</h1>
+                        <h1 className="text-2xl md:text-5xl font-heading font-extrabold text-[var(--color-primary-red)] mb-2 md:mb-4">{product.name}</h1>
 
                         <div className="flex items-center gap-4 mb-6">
                             <div className="flex text-[var(--color-primary-gold)]">
@@ -103,16 +103,16 @@ const ProductDetails = () => {
                             <span className="bg-green-100 text-green-800 text-xs font-bold px-2 py-1 rounded">In Stock</span>
                         </div>
 
-                        <p className="text-gray-600 font-body text-lg mb-8 leading-relaxed">
+                        <p className="text-gray-600 font-body text-sm md:text-lg mb-4 md:mb-8 leading-relaxed">
                             Experience the authentic taste of {product.region}. Handcrafted by expert homemakers using the finest ingredients and traditional recipes passed down through generations.
                         </p>
 
                         {/* Price */}
-                        <div className="mb-8 p-4 bg-red-50/50 rounded-xl border border-red-100">
-                            <span className="text-4xl font-bold text-[var(--color-dark-text)] flex items-end gap-2">
-                                ₹{price} <span className="text-lg text-gray-500 font-normal line-through mb-1">₹{Math.floor(price * 1.2)}</span>
+                        <div className="mb-6 md:mb-8 p-3 md:p-4 bg-red-50/50 rounded-xl border border-red-100">
+                            <span className="text-3xl md:text-4xl font-bold text-[var(--color-dark-text)] flex items-end gap-2">
+                                ₹{price} <span className="text-sm md:text-lg text-gray-500 font-normal line-through mb-1">₹{Math.floor(price * 1.2)}</span>
                             </span>
-                            <p className="text-sm text-[var(--color-primary-green)] font-medium mt-1">Inclusive of all local taxes</p>
+                            <p className="text-[10px] md:text-sm text-[var(--color-primary-green)] font-medium mt-1">Inclusive of all local taxes</p>
                         </div>
 
                         {/* Options */}
@@ -127,9 +127,9 @@ const ProductDetails = () => {
                                         <button
                                             key={weight}
                                             onClick={() => setSelectedWeight(weight)}
-                                            className={`py-3 px-6 rounded-xl font-bold border-2 transition-all ${selectedWeight === weight
-                                                    ? 'border-[var(--color-primary-red)] bg-red-50 text-[var(--color-primary-red)] shadow-sm scale-[1.02]'
-                                                    : 'border-gray-200 text-gray-600 hover:border-red-200 hover:bg-red-50/50'
+                                            className={`py-2 px-4 md:py-3 md:px-6 rounded-xl font-bold border-2 transition-all text-sm md:text-base ${selectedWeight === weight
+                                                ? 'border-[var(--color-primary-red)] bg-red-50 text-[var(--color-primary-red)] shadow-sm scale-[1.02]'
+                                                : 'border-gray-200 text-gray-600 hover:border-red-200 hover:bg-red-50/50'
                                                 }`}
                                         >
                                             {weight}
@@ -165,16 +165,16 @@ const ProductDetails = () => {
                         </div>
 
                         {/* Actions */}
-                        <div className="flex flex-col sm:flex-row gap-4 mt-10 pb-8 border-b border-gray-100">
+                        <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-8 md:mt-10 pb-6 md:pb-8 border-b border-gray-100">
                             <button
                                 onClick={handleAddToCart}
-                                className="flex-1 py-4 px-6 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
+                                className="flex-1 py-3 md:py-4 px-4 md:px-6 border-2 border-[var(--color-primary-red)] text-[var(--color-primary-red)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
                             >
                                 <ShoppingCart size={20} /> Add to Cart
                             </button>
                             <button
                                 onClick={handleBuyNow}
-                                className="flex-1 py-4 px-6 bg-[var(--color-primary-gold)] hover:bg-yellow-400 text-gray-900 rounded-xl font-bold flex justify-center items-center transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                                className="flex-1 py-3 md:py-4 px-4 md:px-6 bg-[var(--color-primary-gold)] hover:bg-yellow-400 text-gray-900 rounded-xl font-bold flex justify-center items-center transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                             >
                                 Buy Now
                             </button>
@@ -193,25 +193,25 @@ const ProductDetails = () => {
                 </div>
 
                 {/* Tabs Section */}
-                <div className="mb-16 bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+                <div className="mb-10 md:mb-16 bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
                     <div className="flex flex-wrap border-b border-gray-100 bg-gray-50">
                         <button
-                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'description' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'description' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('description')}
                         >
-                            <LayoutList size={18} /> Product Details
+                            <LayoutList size={16} className="md:w-[18px] md:h-[18px]" /> Details
                         </button>
                         <button
-                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'ingredients' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[120px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'ingredients' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('ingredients')}
                         >
-                            <Package size={18} /> Ingredients
+                            <Package size={16} className="md:w-[18px] md:h-[18px]" /> Ingredients
                         </button>
                         <button
-                            className={`flex-1 min-w-[150px] py-5 px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 ${activeTab === 'reviews' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
+                            className={`flex-1 min-w-[100px] md:min-w-[150px] py-4 px-4 md:py-5 md:px-6 font-bold text-center border-b-2 transition-colors flex items-center justify-center gap-2 text-xs md:text-sm ${activeTab === 'reviews' ? 'border-[var(--color-primary-red)] text-[var(--color-primary-red)] bg-white' : 'border-transparent text-gray-600 hover:text-[var(--color-primary-red)] hover:bg-gray-100'}`}
                             onClick={() => setActiveTab('reviews')}
                         >
-                            <Star size={18} /> Reviews (24)
+                            <Star size={16} className="md:w-[18px] md:h-[18px]" /> Reviews
                         </button>
                     </div>
 
@@ -270,7 +270,7 @@ const ProductDetails = () => {
                             <h2 className="text-3xl font-heading font-bold text-[var(--color-primary-red)]">Pairs Well With</h2>
                             <a href="/shop" className="text-[var(--color-primary-red)] font-bold hover:underline hidden md:block">View All</a>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
                             {relatedProducts.map(rp => (
                                 <ProductCard key={rp.id} product={rp} />
                             ))}

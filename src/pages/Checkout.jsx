@@ -69,21 +69,21 @@ const Checkout = () => {
     }
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-12 pb-24">
+        <div className="bg-[var(--color-cream)] min-h-screen pt-8 md:pt-12 pb-16 md:pb-24">
             <div className="container mx-auto px-4 md:px-8 max-w-6xl">
-                <h1 className="text-3xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-8">Secure Checkout</h1>
+                <h1 className="text-2xl md:text-5xl font-heading font-bold text-[var(--color-primary-red)] mb-6 md:mb-8">Secure Checkout</h1>
 
                 <div className="flex flex-col lg:flex-row gap-8">
                     {/* Checkout Form */}
                     <div className="lg:w-2/3">
-                        <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 space-y-8">
+                        <form onSubmit={handleSubmit} className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-gray-100 space-y-6 md:space-y-8">
 
                             {/* Contact Info */}
                             <div>
-                                <h2 className="text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-6 flex items-center gap-2 pb-4 border-b border-gray-100">
-                                    <Lock className="text-[var(--color-primary-gold)]" size={24} /> Contact Information
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                    <Lock className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Contact Information
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                     <div>
                                         <label className="block text-gray-700 font-bold mb-2">Full Name *</label>
                                         <input
@@ -125,10 +125,10 @@ const Checkout = () => {
 
                             {/* Shipping Address */}
                             <div>
-                                <h2 className="text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-6 flex items-center gap-2 pb-4 border-b border-gray-100">
-                                    <MapPin className="text-[var(--color-primary-gold)]" size={24} /> Shipping Address
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                    <MapPin className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Shipping Address
                                 </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                                     <div className="md:col-span-2">
                                         <label className="block text-gray-700 font-bold mb-2">Detailed Address *</label>
                                         <textarea
@@ -193,22 +193,22 @@ const Checkout = () => {
 
                             {/* Payment Method */}
                             <div>
-                                <h2 className="text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-6 flex items-center gap-2 pb-4 border-b border-gray-100">
-                                    <ShieldCheck className="text-[var(--color-primary-gold)]" size={24} /> Payment Method
+                                <h2 className="text-xl md:text-2xl font-bold font-heading text-[var(--color-dark-text)] mb-4 md:mb-6 flex items-center gap-2 pb-3 md:pb-4 border-b border-gray-100">
+                                    <ShieldCheck className="text-[var(--color-primary-gold)] w-5 h-5 md:w-6 md:h-6" /> Payment Method
                                 </h2>
-                                <div className="space-y-4">
+                                <div className="space-y-3 md:space-y-4">
 
-                                    <label className={`flex items-center p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'online' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'online' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
                                         <input
                                             type="radio"
                                             name="paymentMethod"
                                             value="online"
                                             checked={formData.paymentMethod === 'online'}
                                             onChange={handleInputChange}
-                                            className="w-5 h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
+                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
                                         />
-                                        <div className="ml-4 flex-grow flex justify-between items-center">
-                                            <span className="font-bold text-gray-800 text-lg">Pay Online (UPI, Cards, NetBanking)</span>
+                                        <div className="ml-3 md:ml-4 flex-grow flex flex-col sm:flex-row sm:justify-between sm:items-center">
+                                            <span className="font-bold text-gray-800 text-sm md:text-lg mb-1 sm:mb-0">Pay Online (UPI, Cards, NetBanking)</span>
                                             <div className="flex gap-2">
                                                 <div className="w-8 h-5 bg-blue-100 rounded text-[8px] font-bold text-blue-800 flex items-center justify-center">VISA</div>
                                                 <div className="w-8 h-5 bg-green-100 rounded text-[8px] font-bold text-green-800 flex items-center justify-center">UPI</div>
@@ -216,18 +216,18 @@ const Checkout = () => {
                                         </div>
                                     </label>
 
-                                    <label className={`flex items-center p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
+                                    <label className={`flex items-center p-4 md:p-5 border-2 rounded-xl cursor-pointer transition-all ${formData.paymentMethod === 'cod' ? 'border-[var(--color-primary-red)] bg-red-50' : 'border-gray-200 hover:border-gray-300'}`}>
                                         <input
                                             type="radio"
                                             name="paymentMethod"
                                             value="cod"
                                             checked={formData.paymentMethod === 'cod'}
                                             onChange={handleInputChange}
-                                            className="w-5 h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
+                                            className="w-4 h-4 md:w-5 md:h-5 text-[var(--color-primary-red)] focus:ring-[var(--color-primary-red)]"
                                         />
-                                        <div className="ml-4">
-                                            <span className="block font-bold text-gray-800 text-lg">Cash on Delivery</span>
-                                            <span className="text-sm text-gray-500">Pay using cash or UPI at your doorstep.</span>
+                                        <div className="ml-3 md:ml-4">
+                                            <span className="block font-bold text-gray-800 text-sm md:text-lg">Cash on Delivery</span>
+                                            <span className="text-[10px] md:text-sm text-gray-500">Pay using cash or UPI at your doorstep.</span>
                                         </div>
                                     </label>
 
@@ -237,10 +237,10 @@ const Checkout = () => {
                             <button
                                 type="submit"
                                 disabled={isSubmitting}
-                                className="w-full py-5 bg-[var(--color-primary-red)] text-white rounded-xl font-bold text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3"
+                                className="w-full py-3 md:py-5 bg-[var(--color-primary-red)] text-white rounded-xl font-bold text-base md:text-xl hover:bg-red-800 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform disabled:opacity-70 disabled:hover:-translate-y-0 disabled:cursor-not-allowed flex justify-center items-center gap-3"
                             >
                                 {isSubmitting ? 'Processing...' : `Place Order (₹${total + deliveryCharge})`}
-                                {isSubmitting && <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>}
+                                {isSubmitting && <div className="w-4 h-4 md:w-6 md:h-6 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>}
                             </button>
 
                             <p className="text-center text-sm text-gray-500 flex items-center justify-center gap-2">
@@ -251,12 +251,12 @@ const Checkout = () => {
 
                     {/* Order Summary sidebar */}
                     <div className="lg:w-1/3">
-                        <div className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-[var(--color-primary-gold)]/20 sticky top-28">
-                            <h3 className="text-xl font-heading font-bold text-[var(--color-dark-text)] mb-6 pb-4 border-b border-gray-100 flex items-center justify-between">
-                                Order Summary <span className="bg-gray-100 text-sm py-1 px-3 rounded-md font-medium">{cartItems.length} items</span>
+                        <div className="bg-white rounded-3xl p-5 md:p-8 shadow-sm border border-[var(--color-primary-gold)]/20 sticky top-28">
+                            <h3 className="text-lg md:text-xl font-heading font-bold text-[var(--color-dark-text)] mb-4 md:mb-6 pb-3 md:pb-4 border-b border-gray-100 flex items-center justify-between">
+                                Order Summary <span className="bg-gray-100 text-[10px] md:text-sm py-1 px-2 md:px-3 rounded-md font-medium">{cartItems.length} items</span>
                             </h3>
 
-                            <div className="space-y-4 max-h-[40vh] overflow-y-auto hide-scroll-bar mb-6 pb-6 border-b border-gray-100 pr-2">
+                            <div className="space-y-3 md:space-y-4 max-h-[40vh] overflow-y-auto hide-scroll-bar mb-4 md:mb-6 pb-4 md:pb-6 border-b border-gray-100 pr-2">
                                 {cartItems.map(item => (
                                     <div key={`${item.id}-${item.weight}`} className="flex gap-4 items-center">
                                         <div className="w-16 h-16 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 relative border border-gray-200">
@@ -289,8 +289,8 @@ const Checkout = () => {
 
                             <div className="pt-4 border-t border-dashed border-gray-300">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-xl font-bold text-gray-800">Total</span>
-                                    <span className="text-3xl font-extrabold text-[var(--color-primary-red)]">₹{total + deliveryCharge}</span>
+                                    <span className="text-lg md:text-xl font-bold text-gray-800">Total</span>
+                                    <span className="text-2xl md:text-3xl font-extrabold text-[var(--color-primary-red)]">₹{total + deliveryCharge}</span>
                                 </div>
                             </div>
                         </div>

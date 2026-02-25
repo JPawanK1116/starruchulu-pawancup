@@ -50,34 +50,34 @@ const Shop = () => {
     }, [activeCategory, activeSort]);
 
     return (
-        <div className="bg-[var(--color-cream)] min-h-screen pt-4 pb-20">
+        <div className="bg-[var(--color-cream)] min-h-screen pt-2 md:pt-4 pb-16 md:pb-20">
             {/* Banner */}
-            <div className="bg-[var(--color-primary-red)] text-white py-16 text-center shadow-inner">
-                <h1 className="text-4xl md:text-5xl font-heading font-bold mb-4 drop-shadow-md">
+            <div className="bg-[var(--color-primary-red)] text-white py-6 md:py-16 text-center shadow-inner">
+                <h1 className="text-2xl md:text-5xl font-heading font-bold mb-2 md:mb-4 drop-shadow-md">
                     {activeCategory === 'All' ? 'Our Menu' : activeCategory}
                 </h1>
-                <p className="text-red-100 font-body text-lg max-w-2xl mx-auto">
+                <p className="text-white/80 font-body text-xs md:text-lg max-w-2xl mx-auto px-4">
                     Authentic homemade flavors prepared with traditional recipes. No preservatives, 100% natural.
                 </p>
             </div>
 
-            <div className="container mx-auto px-4 md:px-8 mt-8">
-                <div className="flex flex-col lg:flex-row gap-8">
+            <div className="container mx-auto px-4 md:px-8 mt-4 md:mt-8">
+                <div className="flex flex-col lg:flex-row gap-4 md:gap-8">
 
                     {/* Mobile Filter Toggle */}
-                    <div className="lg:hidden flex justify-between items-center mb-4 bg-white p-4 rounded-xl shadow-sm border border-gray-100">
-                        <span className="font-bold text-gray-700">{products.length} Products</span>
+                    <div className="lg:hidden flex justify-between items-center mb-2 md:mb-4 bg-white p-3 md:p-4 rounded-xl shadow-sm border border-gray-100">
+                        <span className="font-bold text-gray-700 text-sm md:text-base">{products.length} Products</span>
                         <button
                             onClick={() => setShowFilters(!showFilters)}
-                            className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-md font-medium text-sm"
+                            className="flex items-center gap-2 bg-gray-100 px-3 py-1.5 md:px-4 md:py-2 rounded-md font-medium text-xs md:text-sm"
                         >
-                            <Filter size={18} /> Filters
+                            <Filter size={16} className="md:w-[18px] md:h-[18px]" /> Filters
                         </button>
                     </div>
 
                     {/* Sidebar / Filters */}
                     <div className={`lg:w-1/4 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-                        <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100 sticky top-28">
+                        <div className="bg-white rounded-2xl shadow-sm p-4 md:p-6 border border-gray-100 sticky top-28">
                             <h3 className="font-heading font-bold text-2xl text-[var(--color-primary-red)] mb-6 pb-4 border-b border-gray-100">
                                 Categories
                             </h3>
@@ -87,8 +87,8 @@ const Shop = () => {
                                         <Link
                                             to={cat === 'All' ? '/shop' : `/shop/${cat}`}
                                             className={`block px-3 py-2 rounded-lg transition-colors text-lg ${activeCategory === cat
-                                                    ? 'bg-[var(--color-primary-red)] text-white font-bold shadow-md'
-                                                    : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-red)]'
+                                                ? 'bg-[var(--color-primary-red)] text-white font-bold shadow-md'
+                                                : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-red)]'
                                                 }`}
                                             onClick={() => setShowFilters(false)}
                                         >
@@ -132,7 +132,7 @@ const Shop = () => {
                                 </Link>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+                            <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-8">
                                 {products.map(product => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
@@ -140,8 +140,8 @@ const Shop = () => {
                         )}
 
                         {products.length > 0 && (
-                            <div className="mt-16 text-center">
-                                <button className="px-8 py-3 border-2 border-[var(--color-primary-gold)] text-[var(--color-dark-text)] rounded-full font-bold hover:bg-[var(--color-primary-gold)] transition-colors shadow-sm">
+                            <div className="mt-8 md:mt-16 text-center">
+                                <button className="px-6 py-2.5 md:px-8 md:py-3 border-2 border-[var(--color-primary-gold)] text-[var(--color-dark-text)] rounded-full font-bold hover:bg-[var(--color-primary-gold)] transition-colors shadow-sm text-sm md:text-base">
                                     Load More Products
                                 </button>
                             </div>
