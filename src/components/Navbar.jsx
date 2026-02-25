@@ -9,7 +9,18 @@ const Navbar = () => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
     const [cartCount, setCartCount] = useState(getCartCount());
+    const [searchOpen, setSearchOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate('/shop');
+            setSearchOpen(false);
+            setSearchQuery('');
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -61,10 +72,27 @@ const Navbar = () => {
                         </nav>
 
                         {/* Actions */}
-                        <div className="flex items-center space-x-4">
-                            <button className="hidden md:block p-2 text-gray-700 hover:text-[var(--color-primary-red)] transition-colors">
-                                <Search size={20} />
-                            </button>
+                        <div className="flex items-center space-x-2 md:space-x-4">
+                            <form onSubmit={handleSearch} className="hidden md:flex items-center">
+                                <div className={`transition-all duration-300 overflow-hidden flex items-center bg-gray-50 rounded-full border ${searchOpen ? 'w-48 px-4 py-1.5 border-gray-200 opacity-100' : 'w-0 px-0 py-1.5 border-transparent opacity-0'}`}>
+                                    <input
+                                        type="text"
+                                        placeholder="Search spices..."
+                                        className="w-full bg-transparent border-none focus:outline-none text-sm text-gray-700"
+                                        value={searchQuery}
+                                        onChange={(e) => setSearchQuery(e.target.value)}
+                                        autoFocus={searchOpen}
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setSearchOpen(!searchOpen)}
+                                    className="p-2 text-gray-700 hover:text-[var(--color-primary-gold)] transition-colors"
+                                    title="Search"
+                                >
+                                    <Search size={20} />
+                                </button>
+                            </form>
 
                             <button
                                 className="p-2 text-gray-700 hover:text-[var(--color-primary-red)] transition-colors relative"
@@ -78,7 +106,12 @@ const Navbar = () => {
                                 )}
                             </button>
 
-                            <button className="hidden md:block p-2 text-gray-700 hover:text-[var(--color-primary-red)] transition-colors">
+                            <button
+                                type="button"
+                                onClick={() => alert('Profile dashboard and authentication are coming in the next release!')}
+                                className="hidden md:block p-2 text-gray-700 hover:text-[var(--color-primary-gold)] transition-colors"
+                                title="User Profile"
+                            >
                                 <User size={20} />
                             </button>
 

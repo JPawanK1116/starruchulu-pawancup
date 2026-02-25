@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-red: #1B5E20;
-  /* Deep Green / Primary */
-  --color-primary-gold: #FBC02D;
-  /* Gold Accent */
-  --color-primary-green: #388E3C;
-  /* Secondary Green */
-  --color-cream: #FFFFFF;
-  /* Pure White for clear contrast */
-  --color-dark-text: #1C2822;
-  /* Dark Greenish Grey */
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Poppins', sans-serif;
+  --color-primary-red: #1a1a1a;
+  /* Charcoal black (Replaces old dark green primary) */
+  --color-primary-gold: #C5A059;
+  /* Premium muted gold */
+  --color-primary-green: #2B4C32;
+  /* Secondary elegant deep green */
+  --color-cream: #FAFAFA;
+  /* Pure Off-White for clean premium look */
+  --color-dark-text: #212529;
+  /* Neutral charcoal text */
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Outfit', sans-serif;
 }
 
 @layer base {
