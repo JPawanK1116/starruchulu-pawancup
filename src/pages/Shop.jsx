@@ -1,17 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect, useMemo } from 'react';
+import { useParams, Link, useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import productsData from '../data/products.json';
 import { Filter, ChevronDown } from 'lucide-react';
 
-const categories = ['All', 'Veg Pickles', 'Non-Veg Pickles', 'Sweets', 'Snacks', 'Fryums', 'Curries'];
+const categories = ['All', 'Veg Pickles', 'Non-Veg Pickles', 'Sweets', 'Snacks', 'Fryums', 'Curries', 'Palnadu', 'Rayalaseema', 'Godavari', 'Coastal Andhra'];
 const sortOptions = ['Recommended', 'Price: Low to High', 'Price: High to Low', 'Spice Level'];
 
 const Shop = () => {
     const { category } = useParams();
+    const [searchParams] = useSearchParams();
+    const searchQuery = searchParams.get('search') || '';
+
     const [activeCategory, setActiveCategory] = useState(category || 'All');
     const [activeSort, setActiveSort] = useState('Recommended');
-    const [products, setProducts] = useState([]);
     const [showFilters, setShowFilters] = useState(false);
 
     useEffect(() => {
@@ -22,8 +24,34 @@ const Shop = () => {
         setActiveCategory(category || 'All');
     }, [category]);
 
-    useEffect(() => {
+    const products = useMemo(() => {
         let filtered = [...productsData];
+
+        // Search
+        if (searchQuery) {
+            const normalizedQuery = searchQuery.toLowerCase()
+                .replace(/pickels/g, 'pickle')
+                .replace(/pickel/g, 'pickle');
+
+            const queryWords = normalizedQuery.split(/\s+/).filter(w => w.length > 0);
+
+            filtered = filtered.map(p => {
+                const searchableText = [
+                    p.name,
+                    p.category,
+                    ...(p.ingredients || [])
+                ].join(' ').toLowerCase();
+
+                let score = 0;
+                queryWords.forEach(word => {
+                    if (searchableText.includes(word)) {
+                        score += 1;
+                    }
+                });
+
+                return { ...p, _searchScore: score };
+            }).filter(p => p._searchScore > 0);
+        }
 
         // Filter
         if (activeCategory !== 'All') {
@@ -39,22 +67,30 @@ const Shop = () => {
                 filtered.sort((a, b) => b.price - a.price);
                 break;
             case 'Spice Level':
-                filtered.sort((a, b) => b.spiceLevel - a.spiceLevel);
+                filtered.sort((a, b) => (b.spiceLevel || 0) - (a.spiceLevel || 0));
                 break;
             default: // Recommended
-                // Keep initial order or sort by best seller
-                filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
+                if (searchQuery) {
+                    filtered.sort((a, b) => {
+                        if (b._searchScore !== a._searchScore) {
+                            return b._searchScore - a._searchScore; // Best match first
+                        }
+                        return (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0);
+                    });
+                } else {
+                    filtered.sort((a, b) => (b.isBestSeller ? 1 : 0) - (a.isBestSeller ? 1 : 0));
+                }
         }
 
-        setProducts(filtered);
-    }, [activeCategory, activeSort]);
+        return filtered;
+    }, [activeCategory, activeSort, searchQuery]);
 
     return (
         <div className="bg-[var(--color-bg-white)] min-h-screen pt-2 md:pt-4 pb-16 md:pb-20">
             {/* Banner */}
             <div className="bg-[var(--color-primary-green)] text-white py-6 md:py-16 text-center shadow-inner">
                 <h1 className="text-2xl md:text-5xl font-heading font-bold mb-2 md:mb-4 drop-shadow-md">
-                    {activeCategory === 'All' ? 'Our Menu' : activeCategory}
+                    {searchQuery ? `Search: "${searchQuery}"` : (activeCategory === 'All' ? 'Our Menu' : activeCategory)}
                 </h1>
                 <p className="text-white/80 font-body text-xs md:text-lg max-w-2xl mx-auto px-4">
                     Authentic homemade flavors prepared with traditional recipes. No preservatives, 100% natural.
@@ -82,10 +118,22 @@ const Shop = () => {
                                 Categories
                             </h3>
                             <ul className="space-y-3 font-body">
-                                {categories.map(cat => (
+                                <li>
+                                    <Link
+                                        to={searchQuery ? `/shop?search=${searchQuery}` : '/shop'}
+                                        onClick={() => setShowFilters(false)}
+                                        className={`block px-3 py-2 rounded-lg transition-colors text-lg ${activeCategory === 'All'
+                                            ? 'bg-[var(--color-primary-green)] text-white font-bold shadow-md'
+                                            : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-green)]'
+                                            }`}
+                                    >
+                                        All
+                                    </Link>
+                                </li>
+                                {categories.filter(c => c !== 'All').map(cat => (
                                     <li key={cat}>
                                         <Link
-                                            to={cat === 'All' ? '/shop' : `/shop/${cat}`}
+                                            to={searchQuery ? `/shop/${cat}?search=${searchQuery}` : `/shop/${cat}`}
                                             className={`block px-3 py-2 rounded-lg transition-colors text-lg ${activeCategory === cat
                                                 ? 'bg-[var(--color-primary-green)] text-white font-bold shadow-md'
                                                 : 'text-gray-600 hover:bg-red-50 hover:text-[var(--color-primary-green)]'
@@ -132,7 +180,7 @@ const Shop = () => {
                                 </Link>
                             </div>
                         ) : (
-                            <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 gap-3 md:gap-8">
+                            <div className="grid grid-cols-1 min-[380px]:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8">
                                 {products.map(product => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}

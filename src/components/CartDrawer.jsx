@@ -1,20 +1,72 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { X, Trash2, Plus, Minus } from 'lucide-react';
 import { getCart, removeFromCart, updateQuantity, getCartTotal } from '../utils/cartUtils';
 import { Link } from 'react-router-dom';
 
+const CartItem = React.memo(({ item, onRemove, onUpdateQuantity }) => {
+    return (
+        <div className="flex gap-4 border-b border-gray-100 pb-4">
+            <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
+                <img src={item.image} alt={item.name} className="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div className="flex-grow">
+                <div className="flex justify-between items-start">
+                    <h3 className="font-heading font-bold text-[var(--color-text-primary)]">{item.name}</h3>
+                    <button
+                        onClick={() => onRemove(item.id, item.weight)}
+                        className="text-gray-400 hover:text-red-500 transition-colors"
+                    >
+                        <Trash2 size={18} />
+                    </button>
+                </div>
+                <p className="text-sm text-gray-500 mb-2">Weight: {item.weight}</p>
+
+                <div className="flex justify-between items-center">
+                    <div className="flex items-center border border-gray-200 rounded-md">
+                        <button
+                            onClick={() => onUpdateQuantity(item.id, item.weight, item.quantity - 1)}
+                            className="px-2 py-1 text-gray-600 hover:bg-gray-100"
+                        >
+                            <Minus size={14} />
+                        </button>
+                        <span className="w-8 text-center text-sm">{item.quantity}</span>
+                        <button
+                            onClick={() => onUpdateQuantity(item.id, item.weight, item.quantity + 1)}
+                            className="px-2 py-1 text-gray-600 hover:bg-gray-100"
+                        >
+                            <Plus size={14} />
+                        </button>
+                    </div>
+                    <span className="font-bold text-[var(--color-primary-green)] text-lg">
+                        ₹{item.finalPrice * item.quantity}
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+});
+
 const CartDrawer = ({ isOpen, onClose }) => {
     const [cartItems, setCartItems] = useState(getCart());
 
-    useEffect(() => {
-        const handleCartUpdate = () => {
-            setCartItems(getCart());
-        };
-        window.addEventListener('cartUpdated', handleCartUpdate);
-        return () => window.removeEventListener('cartUpdated', handleCartUpdate);
+    const handleCartUpdate = useCallback(() => {
+        setCartItems(getCart());
     }, []);
 
-    const total = getCartTotal();
+    useEffect(() => {
+        window.addEventListener('cartUpdated', handleCartUpdate);
+        return () => window.removeEventListener('cartUpdated', handleCartUpdate);
+    }, [handleCartUpdate]);
+
+    const handleRemove = useCallback((id, weight) => {
+        removeFromCart(id, weight);
+    }, []);
+
+    const handleUpdateQuantity = useCallback((id, weight, qty) => {
+        updateQuantity(id, weight, qty);
+    }, []);
+
+    const total = useMemo(() => getCartTotal(), [cartItems]);
     const freeShippingThreshold = 999;
     const isFreeShipping = total >= freeShippingThreshold;
 
@@ -56,44 +108,12 @@ const CartDrawer = ({ isOpen, onClose }) => {
                         </div>
                     ) : (
                         cartItems.map((item) => (
-                            <div key={`${item.id}-${item.weight}`} className="flex gap-4 border-b border-gray-100 pb-4">
-                                <div className="w-20 h-20 rounded-md overflow-hidden flex-shrink-0 bg-gray-100">
-                                    <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-                                </div>
-                                <div className="flex-grow">
-                                    <div className="flex justify-between items-start">
-                                        <h3 className="font-heading font-bold text-[var(--color-text-primary)]">{item.name}</h3>
-                                        <button
-                                            onClick={() => removeFromCart(item.id, item.weight)}
-                                            className="text-gray-400 hover:text-red-500 transition-colors"
-                                        >
-                                            <Trash2 size={18} />
-                                        </button>
-                                    </div>
-                                    <p className="text-sm text-gray-500 mb-2">Weight: {item.weight}</p>
-
-                                    <div className="flex justify-between items-center">
-                                        <div className="flex items-center border border-gray-200 rounded-md">
-                                            <button
-                                                onClick={() => updateQuantity(item.id, item.weight, item.quantity - 1)}
-                                                className="px-2 py-1 text-gray-600 hover:bg-gray-100"
-                                            >
-                                                <Minus size={14} />
-                                            </button>
-                                            <span className="w-8 text-center text-sm">{item.quantity}</span>
-                                            <button
-                                                onClick={() => updateQuantity(item.id, item.weight, item.quantity + 1)}
-                                                className="px-2 py-1 text-gray-600 hover:bg-gray-100"
-                                            >
-                                                <Plus size={14} />
-                                            </button>
-                                        </div>
-                                        <span className="font-bold text-[var(--color-primary-green)] text-lg">
-                                            ₹{item.finalPrice * item.quantity}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <CartItem
+                                key={`${item.id}-${item.weight}`}
+                                item={item}
+                                onRemove={handleRemove}
+                                onUpdateQuantity={handleUpdateQuantity}
+                            />
                         ))
                     )}
                 </div>

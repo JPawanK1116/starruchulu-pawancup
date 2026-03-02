@@ -1,11 +1,23 @@
-import { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingCart } from 'lucide-react';
-import { addToCart } from '../utils/cartUtils';
+import { ShoppingCart, Plus, Minus } from 'lucide-react';
+import { getCart, addToCart, updateQuantity } from '../utils/cartUtils';
 
 const ProductCard = ({ product }) => {
     const [selectedWeight, setSelectedWeight] = useState('250g');
     const [isHovered, setIsHovered] = useState(false);
+    const [cartItem, setCartItem] = useState(null);
+
+    useEffect(() => {
+        const fetchCartItem = () => {
+            const cart = getCart();
+            const existing = cart.find(item => item.id === product.id && item.weight === selectedWeight);
+            setCartItem(existing || null);
+        };
+        fetchCartItem();
+        window.addEventListener('cartUpdated', fetchCartItem);
+        return () => window.removeEventListener('cartUpdated', fetchCartItem);
+    }, [product.id, selectedWeight]);
 
     const price = product.pricePerWeight[selectedWeight];
 
@@ -19,11 +31,27 @@ const ProductCard = ({ product }) => {
         );
     };
 
-    const handleAddToCart = (e) => {
+    const handleAddToCart = useCallback((e) => {
         e.preventDefault();
+        e.stopPropagation();
         addToCart(product, 1, selectedWeight);
-        // Optional: show a toast notification here
-    };
+    }, [product, selectedWeight]);
+
+    const handleIncrement = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cartItem) {
+            updateQuantity(product.id, selectedWeight, cartItem.quantity + 1);
+        }
+    }, [product.id, selectedWeight, cartItem]);
+
+    const handleDecrement = useCallback((e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (cartItem) {
+            updateQuantity(product.id, selectedWeight, cartItem.quantity - 1);
+        }
+    }, [product.id, selectedWeight, cartItem]);
 
     return (
         <div
@@ -48,13 +76,31 @@ const ProductCard = ({ product }) => {
                 />
                 {/* Overlay for quick action on desktop */}
                 <div className={`absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 ${isHovered ? 'md:opacity-100' : ''} transition-opacity duration-300 hidden md:flex`}>
-                    <button
-                        onClick={handleAddToCart}
-                        className="bg-white text-[var(--color-primary-green)] font-bold py-2 px-6 rounded-full hover:bg-[var(--color-primary-gold)] hover:text-black transition-colors transform translate-y-4 shadow-lg hover:translate-y-0"
-                        style={{ transitionDuration: '400ms' }}
-                    >
-                        Quick Add
-                    </button>
+                    {!cartItem ? (
+                        <button
+                            onClick={handleAddToCart}
+                            className="bg-white text-[var(--color-primary-green)] font-bold py-2 px-6 rounded-full hover:bg-[var(--color-primary-gold)] hover:text-black transition-colors transform translate-y-4 shadow-lg hover:translate-y-0"
+                            style={{ transitionDuration: '400ms' }}
+                        >
+                            Quick Add
+                        </button>
+                    ) : (
+                        <div className="bg-white text-[var(--color-text-primary)] font-bold py-2 px-4 rounded-full flex items-center gap-4 transform translate-y-4 shadow-lg hover:translate-y-0" style={{ transitionDuration: '400ms' }}>
+                            <button
+                                onClick={handleDecrement}
+                                className="p-1 rounded-full transition-colors text-gray-500 hover:text-black bg-gray-100"
+                            >
+                                <Minus size={16} />
+                            </button>
+                            <span className="w-4 text-center">{cartItem.quantity}</span>
+                            <button
+                                onClick={handleIncrement}
+                                className="text-gray-500 hover:text-black transition-colors bg-gray-100 p-1 rounded-full"
+                            >
+                                <Plus size={16} />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </Link>
 
@@ -94,13 +140,31 @@ const ProductCard = ({ product }) => {
                         <span className="text-base md:text-xl font-bold text-[var(--color-primary-green)]">
                             ₹{price}
                         </span>
-                        <button
-                            onClick={handleAddToCart}
-                            className="md:hidden bg-[var(--color-primary-green)] text-white p-2 rounded-full hover:bg-[var(--color-secondary-green)] active:scale-95 transition-all shadow-md flex items-center justify-center"
-                            aria-label="Add to cart"
-                        >
-                            <ShoppingCart size={14} />
-                        </button>
+                        {!cartItem ? (
+                            <button
+                                onClick={handleAddToCart}
+                                className="md:hidden bg-[var(--color-primary-green)] text-white p-2 rounded-full hover:bg-[var(--color-secondary-green)] active:scale-95 transition-all shadow-md flex items-center justify-center"
+                                aria-label="Add to cart"
+                            >
+                                <ShoppingCart size={14} />
+                            </button>
+                        ) : (
+                            <div className="md:hidden flex items-center bg-gray-100 rounded-full border border-gray-200 shadow-sm">
+                                <button
+                                    onClick={handleDecrement}
+                                    className="p-1.5 text-gray-600 hover:bg-gray-200 rounded-l-full transition-colors"
+                                >
+                                    <Minus size={12} />
+                                </button>
+                                <span className="w-4 text-center text-xs font-bold text-gray-800">{cartItem.quantity}</span>
+                                <button
+                                    onClick={handleIncrement}
+                                    className="p-1.5 text-gray-600 hover:bg-gray-200 rounded-r-full transition-colors"
+                                >
+                                    <Plus size={12} />
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -108,4 +172,4 @@ const ProductCard = ({ product }) => {
     );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

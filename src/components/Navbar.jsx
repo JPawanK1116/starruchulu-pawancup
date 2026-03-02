@@ -1,25 +1,38 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Menu, X, Search, User } from 'lucide-react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { ShoppingCart, Menu, X, Search, ChevronDown } from 'lucide-react';
 import { getCartCount } from '../utils/cartUtils';
 import CartDrawer from './CartDrawer';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [mobileCategoryOpen, setMobileCategoryOpen] = useState(false);
     const [cartOpen, setCartOpen] = useState(false);
     const [cartCount, setCartCount] = useState(getCartCount());
-    const [searchOpen, setSearchOpen] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchParams] = useSearchParams();
+    const urlQuery = searchParams.get('search') || '';
+
+    const [searchQuery, setSearchQuery] = useState(urlQuery);
+    const [searchOpen, setSearchOpen] = useState(!!urlQuery);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setSearchQuery(urlQuery);
+        setSearchOpen(!!urlQuery);
+    }, [urlQuery]);
 
     const handleSearch = (e) => {
         e.preventDefault();
         if (searchQuery.trim()) {
-            navigate('/shop');
-            setSearchOpen(false);
-            setSearchQuery('');
+            navigate(`/shop?search=${encodeURIComponent(searchQuery.trim())}`);
         }
+    };
+
+    const clearSearch = () => {
+        setSearchQuery('');
+        setSearchOpen(false);
+        navigate('/shop');
     };
 
     useEffect(() => {
@@ -73,24 +86,37 @@ const Navbar = () => {
 
                         {/* Actions */}
                         <div className="flex items-center space-x-2 md:space-x-4">
-                            <form onSubmit={handleSearch} className="hidden md:flex items-center">
-                                <div className={`transition-all duration-300 overflow-hidden flex items-center bg-gray-50 rounded-full border ${searchOpen ? 'w-48 px-4 py-1.5 border-gray-200 opacity-100' : 'w-0 px-0 py-1.5 border-transparent opacity-0'}`}>
+                            <form onSubmit={handleSearch} className="flex items-center relative">
+                                <div className={`transition-all duration-300 overflow-hidden flex items-center bg-gray-50 rounded-full border absolute right-full mr-2 md:relative md:right-auto md:mr-0 z-20 ${searchOpen ? 'w-[160px] sm:w-[220px] md:w-56 px-2 md:px-3 py-1.5 border-gray-200 opacity-100 shadow-sm md:shadow-none' : 'w-0 px-0 py-1.5 border-transparent opacity-0'}`}>
                                     <input
                                         type="text"
-                                        placeholder="Search spices..."
-                                        className="w-full bg-transparent border-none focus:outline-none text-sm text-gray-700"
+                                        placeholder="Search..."
+                                        className="w-full bg-transparent border-none focus:outline-none text-xs md:text-sm text-gray-700"
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        autoFocus={searchOpen}
+                                        autoFocus={searchOpen && !urlQuery}
                                     />
+                                    {searchQuery && (
+                                        <button
+                                            type="button"
+                                            onClick={clearSearch}
+                                            className="text-gray-400 hover:text-red-500 transition-colors ml-1 p-0.5"
+                                            title="Clear Search"
+                                        >
+                                            <X size={14} className="md:w-4 md:h-4" />
+                                        </button>
+                                    )}
                                 </div>
                                 <button
                                     type="button"
-                                    onClick={() => setSearchOpen(!searchOpen)}
-                                    className="p-2 text-gray-700 hover:text-[var(--color-primary-gold)] transition-colors"
+                                    onClick={() => {
+                                        if (searchOpen && !searchQuery) setSearchOpen(false);
+                                        else setSearchOpen(true);
+                                    }}
+                                    className="p-1 md:p-2 text-gray-700 hover:text-[var(--color-primary-gold)] transition-colors ml-1 z-20 relative bg-white md:bg-transparent rounded-full"
                                     title="Search"
                                 >
-                                    <Search size={20} />
+                                    <Search size={20} className="md:w-5 md:h-5" />
                                 </button>
                             </form>
 
@@ -106,17 +132,10 @@ const Navbar = () => {
                                 )}
                             </button>
 
-                            <button
-                                type="button"
-                                onClick={() => alert('Profile dashboard and authentication are coming in the next release!')}
-                                className="hidden md:block p-2 text-gray-700 hover:text-[var(--color-primary-gold)] transition-colors"
-                                title="User Profile"
-                            >
-                                <User size={20} />
-                            </button>
+
 
                             <button
-                                className="md:hidden p-1 text-[var(--color-primary-green)] hover:text-[var(--color-primary-gold)]"
+                                className="md:hidden p-1 text-[var(--color-primary-green)] hover:text-[var(--color-primary-gold)] transition-colors ml-1"
                                 onClick={() => setMobileMenuOpen(true)}
                             >
                                 <Menu size={24} />
@@ -144,19 +163,30 @@ const Navbar = () => {
                         <X size={24} />
                     </button>
                 </div>
-                <div className="p-5 flex flex-col space-y-4">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            to={link.path}
-                            className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100"
-                            onClick={() => setMobileMenuOpen(false)}
+                <div className="p-5 flex flex-col space-y-1 overflow-y-auto max-h-[calc(100vh-80px)]">
+                    <Link to="/" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-3 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Home</Link>
+                    <Link to="/shop" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-3 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Shop All</Link>
+
+                    <div className="border-b border-gray-100">
+                        <button
+                            className="w-full text-left text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-3 flex justify-between items-center"
+                            onClick={() => setMobileCategoryOpen(!mobileCategoryOpen)}
                         >
-                            {link.name}
-                        </Link>
-                    ))}
-                    <Link to="/about" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
-                    <Link to="/contact" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-2 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
+                            Categories
+                            <ChevronDown size={20} className={`transform transition-transform duration-300 ${mobileCategoryOpen ? 'rotate-180 text-[var(--color-primary-green)]' : 'text-gray-400'}`} />
+                        </button>
+                        <div className={`overflow-hidden transition-all duration-300 ease-in-out ${mobileCategoryOpen ? 'max-h-64 mb-3 opacity-100' : 'max-h-0 opacity-0'}`}>
+                            <div className="flex flex-col pl-4 border-l-2 border-gray-100 ml-2 space-y-1">
+                                <Link to="/shop/Veg Pickles" className="text-base text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-50 py-2 px-2 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>Veg Pickles</Link>
+                                <Link to="/shop/Non-Veg Pickles" className="text-base text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-50 py-2 px-2 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>Non-Veg Pickles</Link>
+                                <Link to="/shop/Sweets" className="text-base text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-50 py-2 px-2 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>Authentic Sweets</Link>
+                                <Link to="/shop/Snacks" className="text-base text-gray-600 hover:text-[var(--color-primary-green)] hover:bg-gray-50 py-2 px-2 rounded-lg transition-colors" onClick={() => setMobileMenuOpen(false)}>Crunchy Snacks</Link>
+                            </div>
+                        </div>
+                    </div>
+
+                    <Link to="/about" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-3 border-b border-gray-100" onClick={() => setMobileMenuOpen(false)}>Our Story</Link>
+                    <Link to="/contact" className="text-lg font-medium text-gray-800 hover:text-[var(--color-primary-green)] py-3" onClick={() => setMobileMenuOpen(false)}>Contact Us</Link>
                 </div>
             </div>
 

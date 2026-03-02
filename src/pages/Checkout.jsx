@@ -22,6 +22,7 @@ const Checkout = () => {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [orderSuccess, setOrderSuccess] = useState(false);
+    const [generatedOrderId, setGeneratedOrderId] = useState('');
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -39,8 +40,44 @@ const Checkout = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
+        // Simulate API call and LocalStorage injection for Admin Panel
         setTimeout(() => {
+            const orderId = `SR-${Math.floor(1000 + Math.random() * 9000)}-2024`;
+
+            const newOrder = {
+                orderId,
+                customerDetails: { fullName: formData.fullName, phone: formData.phone, email: formData.email },
+                shippingAddress: { address: formData.address, city: formData.city, state: formData.state, pincode: formData.pincode },
+                items: cartItems,
+                subtotal: total,
+                shippingCharge: deliveryCharge,
+                totalAmount: total + deliveryCharge,
+                paymentMethod: formData.paymentMethod,
+                orderStatus: 'Processing',
+                createdAt: new Date().toISOString()
+            };
+
+            const existingOrders = JSON.parse(localStorage.getItem('sr_admin_orders')) || [];
+            localStorage.setItem('sr_admin_orders', JSON.stringify([newOrder, ...existingOrders]));
+
+            const existingCustomers = JSON.parse(localStorage.getItem('sr_admin_customers')) || [];
+            const customerIndex = existingCustomers.findIndex(c => c.phone === formData.phone);
+
+            if (customerIndex >= 0) {
+                existingCustomers[customerIndex].totalOrders += 1;
+                existingCustomers[customerIndex].totalSpent += (total + deliveryCharge);
+            } else {
+                existingCustomers.push({
+                    name: formData.fullName,
+                    phone: formData.phone,
+                    email: formData.email,
+                    totalOrders: 1,
+                    totalSpent: total + deliveryCharge
+                });
+            }
+            localStorage.setItem('sr_admin_customers', JSON.stringify(existingCustomers));
+
+            setGeneratedOrderId(orderId);
             setIsSubmitting(false);
             setOrderSuccess(true);
             clearCart();
@@ -58,7 +95,7 @@ const Checkout = () => {
                     Thank you for choosing Star Ruchulu. Your authentic Andhra flavors are being prepared and will be shipped soon.
                 </p>
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8 inline-block text-left">
-                    <p className="font-bold text-gray-800 mb-2">Order ID: <span className="text-[var(--color-primary-green)]">#SR-{Math.floor(1000 + Math.random() * 9000)}-2024</span></p>
+                    <p className="font-bold text-gray-800 mb-2">Order ID: <span className="text-[var(--color-primary-green)]">#{generatedOrderId}</span></p>
                     <p className="text-gray-600">A confirmation email has been sent to <span className="font-bold">{formData.email}</span></p>
                 </div>
                 <Link to="/" className="px-8 py-4 bg-[var(--color-primary-green)] text-white rounded-full font-bold hover:bg-red-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-1 transform">

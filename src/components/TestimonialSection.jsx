@@ -18,9 +18,9 @@ const TestimonialSection = () => {
                     <p className="text-gray-500 max-w-2xl mx-auto font-body text-lg">Don't just take our word for it. Here's what food lovers across India have to say about our flavors.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-12 overflow-x-auto pb-8 snap-x snap-mandatory hide-scroll-bar -mx-4 px-4 md:mx-0 md:px-0">
                     {testimonials.map((test) => (
-                        <div key={test.id} className="bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-2 transition-transform duration-300 relative border border-gray-100">
+                        <div key={test.id} className="flex-none w-[85%] sm:w-[60%] md:w-auto snap-center bg-white rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:-translate-y-2 transition-transform duration-300 relative border border-gray-100">
                             <Quote className="absolute top-6 right-8 text-gray-100" size={64} style={{ zIndex: 0 }} />
 
                             <div className="relative z-10">

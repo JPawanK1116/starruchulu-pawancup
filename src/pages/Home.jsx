@@ -37,18 +37,18 @@ const Home = () => {
                     <span className="inline-block py-1 px-4 text-xs md:text-sm font-bold tracking-widest text-[var(--color-primary-green)] border border-[var(--color-primary-gold)] rounded-full mb-6 uppercase bg-white/50 backdrop-blur-sm">
                         Premium Quality Homemade Foods
                     </span>
-                    <h1 className="text-3xl md:text-6xl lg:text-7xl font-heading font-extrabold text-[var(--color-primary-green)] mb-4 md:mb-6 leading-tight max-w-3xl">
+                    <h1 className="text-2xl min-[360px]:text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-[var(--color-primary-green)] mb-4 md:mb-6 leading-tight max-w-3xl">
                         Authentic Andhra Flavours <br className="hidden md:block" />
-                        <span className="text-[var(--color-primary-gold)]">Delivered Pan-India</span>
+                        <span className="text-[var(--color-primary-gold)] text-xl min-[360px]:text-2xl sm:text-3xl md:text-6xl lg:text-7xl">Delivered Pan-India</span>
                     </h1>
                     <div className="w-16 h-1 bg-[var(--color-primary-gold)] mb-6 md:mb-8"></div>
-                    <p className="text-base md:text-2xl text-[var(--color-text-secondary)] font-body mb-8 md:mb-10 max-w-2xl drop-shadow-sm">
+                    <p className="text-sm min-[360px]:text-base md:text-2xl text-[var(--color-text-secondary)] font-body mb-8 md:mb-10 max-w-2xl drop-shadow-sm leading-relaxed">
                         Handcrafted pickles, traditional sweets, and crunchy snacks made with love from the kitchens of Palnadu.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-start items-center md:items-start">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start items-center md:items-start w-full max-w-[95vw] overflow-hidden">
                         <Link
                             to="/shop"
-                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-[var(--color-primary-green)] hover:bg-[var(--color-secondary-green)] text-white font-bold rounded-xl text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
+                            className="px-4 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-[var(--color-primary-green)] hover:bg-[var(--color-secondary-green)] text-white font-bold rounded-xl text-sm min-[360px]:text-base md:text-lg shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center"
                         >
                             Shop Now
                         </Link>
@@ -56,7 +56,7 @@ const Home = () => {
                             href="https://wa.me/919876543210?text=I want to order from Star Ruchulu"
                             target="_blank"
                             rel="noreferrer"
-                            className="px-6 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-white border border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-gray-50 font-bold rounded-xl text-base md:text-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center"
+                            className="px-4 py-3 md:px-8 md:py-4 w-full sm:w-auto bg-white border border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-gray-50 font-bold rounded-xl text-xs min-[360px]:text-sm md:text-lg shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300 text-center whitespace-normal break-words leading-tight"
                         >
                             Order on WhatsApp
                         </a>
@@ -72,9 +72,9 @@ const Home = () => {
                         <p className="text-gray-600 max-w-2xl mx-auto font-body text-sm md:text-lg">Every district in Andhra Pradesh has a unique culinary story. Explore our distinct regional offerings.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
+                    <div className="flex md:grid md:grid-cols-4 gap-4 md:gap-8 overflow-x-auto pb-6 snap-x snap-mandatory hide-scroll-bar -mx-4 px-4 md:mx-0 md:px-0">
                         {regionals.map((region) => (
-                            <Link to="/shop" key={region.name} className="group overflow-hidden rounded-2xl relative aspect-[4/5] md:aspect-[3/4] shadow-md hover:shadow-2xl transition-all duration-500">
+                            <Link to="/shop" key={region.name} className="flex-none w-[80%] sm:w-[45%] md:w-auto snap-center group overflow-hidden rounded-2xl relative aspect-[4/5] md:aspect-[3/4] shadow-md hover:shadow-2xl transition-all duration-500">
                                 <img
                                     src={region.image}
                                     alt={region.name}
@@ -113,9 +113,11 @@ const Home = () => {
                         </Link>
                     </div>
 
-                    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
+                    <div className="flex justify-start md:grid md:grid-cols-4 gap-4 md:gap-8 overflow-x-auto pb-8 snap-x snap-mandatory hide-scroll-bar -mx-4 px-4 md:mx-0 md:px-0">
                         {bestSellers.map(product => (
-                            <ProductCard key={product.id} product={product} />
+                            <div key={product.id} className="flex-none w-[80%] sm:w-[45%] md:w-auto snap-center">
+                                <ProductCard product={product} />
+                            </div>
                         ))}
                     </div>
                     <div className="mt-10 text-center md:hidden">

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Heart, Share2, Info, LayoutList, Package, Star } from 'lucide-react';
 import productsData from '../data/products.json';
-import { addToCart } from '../utils/cartUtils';
+import { getCart, addToCart, updateQuantity } from '../utils/cartUtils';
 import ProductCard from '../components/ProductCard';
 
 const ProductDetails = () => {
@@ -12,6 +12,8 @@ const ProductDetails = () => {
     const [selectedWeight, setSelectedWeight] = useState('250g');
     const [quantity, setQuantity] = useState(1);
     const [activeTab, setActiveTab] = useState('description');
+
+    const [cartItem, setCartItem] = useState(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -25,6 +27,19 @@ const ProductDetails = () => {
         }
     }, [id, navigate]);
 
+    useEffect(() => {
+        if (!product) return;
+        const fetchCartItem = () => {
+            const cart = getCart();
+            const existing = cart.find(item => item.id === product.id && item.weight === selectedWeight);
+            setCartItem(existing || null);
+            if (!existing) setQuantity(1); // Reset placeholder quantity if removed
+        };
+        fetchCartItem();
+        window.addEventListener('cartUpdated', fetchCartItem);
+        return () => window.removeEventListener('cartUpdated', fetchCartItem);
+    }, [product, selectedWeight]);
+
     if (!product) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
     const price = product.pricePerWeight[selectedWeight];
@@ -32,9 +47,6 @@ const ProductDetails = () => {
 
     const handleAddToCart = () => {
         addToCart(product, quantity, selectedWeight);
-        window.dispatchEvent(new Event('cartUpdated'));
-        // Optional toast
-        alert(`Added ${quantity}x ${product.name} to cart!`);
     };
 
     const handleBuyNow = () => {
@@ -65,7 +77,7 @@ const ProductDetails = () => {
 
                     {/* Images */}
                     <div className="lg:w-1/2 flex flex-col gap-4">
-                        <div className="aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-inner group relative cursor-zoom-in">
+                        <div className="aspect-[4/3] md:aspect-square rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-inner group relative cursor-zoom-in max-h-[300px] md:max-h-[500px]">
                             <img
                                 src={product.image}
                                 alt={product.name}
@@ -120,7 +132,7 @@ const ProductDetails = () => {
 
                             <div>
                                 <h3 className="font-bold text-gray-800 mb-3 flex justify-between items-center">
-                                    Select Weight <span className="text-sm font-normal text-gray-500 underline cursor-pointer hover:text-[var(--color-primary-green)]">View Box Sizes</span>
+                                    Select Weight
                                 </h3>
                                 <div className="flex flex-wrap gap-3">
                                     {Object.keys(product.pricePerWeight).map(weight => (
@@ -137,49 +149,39 @@ const ProductDetails = () => {
                                     ))}
                                 </div>
                             </div>
-
-                            <div>
-                                <h3 className="font-bold text-gray-800 mb-3">Quantity</h3>
-                                <div className="flex items-center w-32 border-2 border-gray-200 rounded-xl overflow-hidden bg-white shadow-sm">
-                                    <button
-                                        onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-xl font-medium"
-                                    >
-                                        -
-                                    </button>
-                                    <input
-                                        type="number"
-                                        value={quantity}
-                                        readOnly
-                                        className="w-full text-center font-bold text-lg border-x-2 border-gray-200/50 focus:outline-none"
-                                    />
-                                    <button
-                                        onClick={() => setQuantity(q => q + 1)}
-                                        className="w-10 h-12 flex items-center justify-center text-gray-600 hover:bg-gray-100 hover:text-[var(--color-primary-green)] transition-colors text-xl font-medium"
-                                    >
-                                        +
-                                    </button>
-                                </div>
-                            </div>
-
                         </div>
 
                         {/* Actions */}
                         <div className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-8 md:mt-10 pb-6 md:pb-8 border-b border-gray-100">
-                            <button
-                                onClick={handleAddToCart}
-                                className="flex-1 py-3 md:py-4 px-4 md:px-6 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
-                            >
-                                <ShoppingCart size={20} /> Add to Cart
-                            </button>
+                            {!cartItem ? (
+                                <button
+                                    onClick={handleAddToCart}
+                                    className="flex-1 py-3 md:py-4 px-4 md:px-6 border-2 border-[var(--color-primary-green)] text-[var(--color-primary-green)] hover:bg-red-50 rounded-xl font-bold flex justify-center items-center gap-2 transition-all shadow-sm hover:shadow"
+                                >
+                                    <ShoppingCart size={20} /> Add to Cart
+                                </button>
+                            ) : (
+                                <div className="flex-1 py-1.5 md:py-2 px-2 bg-green-50/50 border-2 border-[var(--color-primary-green)] rounded-xl flex justify-between items-center shadow-inner">
+                                    <button
+                                        onClick={() => updateQuantity(product.id, selectedWeight, cartItem.quantity - 1)}
+                                        className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-[var(--color-primary-green)] hover:bg-[var(--color-primary-green)] hover:text-white rounded-lg transition-colors text-2xl font-medium"
+                                    >
+                                        -
+                                    </button>
+                                    <span className="text-xl md:text-2xl font-bold text-[var(--color-primary-green)] px-4">{cartItem.quantity}</span>
+                                    <button
+                                        onClick={() => updateQuantity(product.id, selectedWeight, cartItem.quantity + 1)}
+                                        className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-[var(--color-primary-green)] hover:bg-[var(--color-primary-green)] hover:text-white rounded-lg transition-colors text-2xl font-medium"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            )}
                             <button
                                 onClick={handleBuyNow}
                                 className="flex-1 py-3 md:py-4 px-4 md:px-6 bg-[var(--color-primary-gold)] hover:bg-yellow-400 text-gray-900 rounded-xl font-bold flex justify-center items-center transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                             >
                                 Buy Now
-                            </button>
-                            <button className="w-14 h-[60px] flex items-center justify-center border-2 border-gray-200 rounded-xl text-gray-500 hover:text-red-500 hover:border-red-200 hover:bg-red-50 transition-colors shadow-sm cursor-pointer shrink-0">
-                                <Heart size={24} />
                             </button>
                         </div>
 
